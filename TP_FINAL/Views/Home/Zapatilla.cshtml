@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Zapatilla";
+}
+@foreach(MODELO item in ViewBag.Modelo)
+{
+<img src="@item.Foto">
+<h1>@item.Nombre</h1>
+<h2>@item.Precio</h2>
+}
+@foreach(TALLE item in ViewBag.Talles)
+{
+<div class="Talles">
+    <h1>@item.Numero</h1>
+</div>
+}
+
+    <div class="Botones-1">
+    <a href='@Url.Action("Carrito", "Home")'>
+        <button type="button" class="boton-b"> Buy Now </button>
+    </a>
+
+    <a href='@Url.Action("AgregarAlCarrito", "Home")'>
+        <button type="button" class="boton-b"> Add to cart </button>
+    </a>
+</div>
+

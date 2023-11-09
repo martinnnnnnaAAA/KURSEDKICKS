@@ -1,4 +1,5 @@
 using System.Data.SqlClient;
+using System.Data;
 using Dapper;
 using System.Collections.Generic;
 
@@ -113,8 +114,8 @@ public static class BD
     {
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            string SQL = "SELECT * FROM Modelo";
-            List<MODELO> ListadoModelos = db.Query<MODELO>(SQL).ToList();
+            string SP = "SP_ObtenerModelos";
+            List<MODELO> ListadoModelos = db.Query<MODELO>(SP, commandType: CommandType.StoredProcedure).ToList();
             return ListadoModelos;
         }
     }

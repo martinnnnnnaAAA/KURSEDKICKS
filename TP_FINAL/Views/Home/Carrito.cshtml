@@ -1,0 +1,23 @@
+<h1>Shopping cart</h1>
+
+@if(ViewBag.ZapatillaCarrito != null)
+{
+    @foreach(MODELO ZapatillaCarrito in ViewBag.ZapatillaCarrito)
+    {
+        <img src="/Images/@ZapatillaCarrito.Foto" width="300">
+        <h2>@ZapatillaCarrito.Nombre</h2>
+        <h2>@ZapatillaCarrito.Precio</h2> 
+    }
+}
+
+<style> 
+h1
+{
+    font-family: 'Poppins';
+    font-size: 223px;
+}
+h2
+{
+  font-family: 'Poppins'; 
+}
+</style>

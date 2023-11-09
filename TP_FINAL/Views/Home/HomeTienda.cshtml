@@ -16,6 +16,21 @@
     </div>
     <button class="next" onclick="changeSlide(1)">&#10095;</button>
 </div>
+<section>
+@foreach (MODELO item in ViewBag.Modelo)
+{
+  <a href='@Url.Action("Details", "Home", new { id = 123 })'>
+<div class="card">
+    <img src="@item.Foto" alt="@item.Nombre">
+    <h2>@item.Nombre</h2>
+    <h3>@item.Descripcion</h3>
+    <p>@item.MarcaNombre</p>
+
+    <a href="#">Learn more</a>
+  </div>
+  </a>
+}
+</section>
 
 <style>
 .carousel {

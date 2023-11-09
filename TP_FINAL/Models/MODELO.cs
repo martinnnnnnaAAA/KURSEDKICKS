@@ -9,4 +9,6 @@ public bool Destacado{get;set;}
 public int FkMarca{get;set;}
 public int FkGenero{get;set;}
 public string Foto{get;set;}
+public string MarcaNombre{get;set;}
+public string GeneroNombre{get;set;}
 }
