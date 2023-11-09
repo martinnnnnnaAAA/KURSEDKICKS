@@ -2,34 +2,71 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="carousel">
+@* <div class="carousel">
     <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
     <div class="slides">
-    @foreach(var item in ViewBag.Modelo){
+    @foreach(MODELO item in ViewBag.Modelo){
       if(item.Destacado == true){
         <div class="slide current">
             <img src="@item.Foto" alt="Imagen">
             <h1>@item.Nombre</h1>
-        </div>
+        </div> 
       }
     }
     </div>
     <button class="next" onclick="changeSlide(1)">&#10095;</button>
-</div>
-<section>
-@foreach (MODELO item in ViewBag.Modelo)
-{
-  <a href='@Url.Action("Details", "Home", new { id = 123 })'>
-<div class="card">
-    <img src="@item.Foto" alt="@item.Nombre">
-    <h2>@item.Nombre</h2>
-    <h3>@item.Descripcion</h3>
-    <p>@item.MarcaNombre</p>
-
-    <a href="#">Learn more</a>
+</div> *@
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    @foreach(MODELO item in ViewBag.Modelo){
+      if(item.Destacado == true){
+        <div class="carousel-item @if(item.Equals(ViewBag.Modelo[0])) { <text>active</text> }">
+            <img src="/Images/@item.Foto" class="d-block w-100" alt="Imagen">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>@item.Nombre</h5>
+            </div>
+        </div> 
+      }
+    }
   </div>
-  </a>
-}
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (MODELO item in ViewBag.Modelo)
+            {
+                <div class="col-md-3 col-12">
+                    <a href='@Url.Action("Details", "Home", new {zapatilla = @item})'>
+                            <div class="card">
+                                <img src="@item.Foto" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Nombre</h5>
+                                    <p class="card-text">@item.Descripcion</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item" style="height:30px;">@item.MarcaNombre</li>
+                                    <li class="list-group-item">@item.GeneroNombre</li>
+                                    <li class="list-group-item">@item.Precio</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="#" class="card-link">Card link</a>
+                                    <a href="#" class="card-link">Another link</a>
+                                </div>
+                            </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
 </section>
 
 <style>

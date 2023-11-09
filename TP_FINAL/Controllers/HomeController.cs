@@ -23,8 +23,8 @@ public class HomeController : Controller
         ViewBag.User = BD.TraerUsuario(UserName, "UserName");
         if (ViewBag.User != null && Contrasena == ViewBag.User.Contrasena)
         {
-            RedirectToAction("HomeTienda", new{ User = ViewBag.User });
-            return View("HomeTienda");
+            
+            return RedirectToAction("HomeTienda", ViewBag.User );
         }
         ViewBag.MensajeErrorLogIn = "Usuario y/o Contraseña no válidos";
         return View("LogIn");

@@ -112,10 +112,11 @@ public static class BD
 
     public static List<MODELO> ObtenerModelos()
     {
+        List<MODELO> ListadoModelos = null;
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
             string SP = "SP_ObtenerModelos";
-            List<MODELO> ListadoModelos = db.Query<MODELO>(SP, commandType: CommandType.StoredProcedure).ToList();
+            ListadoModelos = db.Query<MODELO>(SP, commandType: CommandType.StoredProcedure).ToList();
             return ListadoModelos;
         }
     }
