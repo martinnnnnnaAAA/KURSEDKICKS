@@ -1,0 +1,97 @@
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 20px 60px 0px 20px;
+}
+
+footer {
+  position: fixed; 
+  bottom: 0; 
+  margin: 10px 0px 20px 0px;
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between; /* Para espaciar los elementos de manera uniforme */
+  position: relative; /* Agregamos esta propiedad */
+  height: 150px;
+}
+
+.img-navbar{
+  height: 10px;
+}
+
+/* Estilo para el botón del menú desplegable */
+.menu-button {
+  cursor: pointer;
+}
+
+/* Estilo para el icono del menú desplegable */
+#menu-icon {
+  font-size: 24px;
+}
+
+/* Estilo para el logo centrado */
+.center-logo {
+  text-align: center;
+  position: absolute; /* Agregamos esta propiedad */
+  left: 50%; /* Centramos horizontalmente */
+  transform: translateX(-50%); /* Centramos exactamente */
+}
+
+/* Estilo para el logo */
+.center-logo a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* Estilo para la sección de la derecha */
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo para los elementos de la sección de la derecha */
+.right-section div {
+  margin: 0 10px;
+}
+
+/* Estilo para el campo de búsqueda */
+#search-input {
+  width: 0;
+  overflow: hidden;
+  transition: width 0.5s;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+
+/* Estilo para el campo de búsqueda cuando se expande */
+#search-input.active {
+  width: 150px;
+  overflow: visible;
+}
+
+/* Estilo para el ícono de búsqueda */
+#search-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Agregar estilos adicionales según sea necesario */

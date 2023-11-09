@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Index";
+}
+<div class = "container">
+<form action='@Url.Action("VerificarRecuperarContrasena")' method="get" class="CambiarContrasena">
+            <div class = "formulario">
+            <label for="Email">Email:</label>
+            <input type="email" name="Email" required>
+            <button type="submit" class="boton-submit">Recuperar Contraseña</button>
+            <p class = "error-message">@ViewBag.MensajeError</p>
+            </div>
+</form>
+</div>

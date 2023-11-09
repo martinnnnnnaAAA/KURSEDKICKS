@@ -1,0 +1,41 @@
+Crear la base de datos.
+tablas:
+
+zapatilla{
+pk id zapatilla
+varchar modelo
+float precio
+fk marca
+fk talle
+fk color
+fk genero
+text descripcion
+(opcion de favorito)
+}
+
+marca{
+id marca
+varchar nombre
+}
+
+talle{
+id talle
+float/varchar numero
+float/varchar centrimetros [para el modal de la tabla de talles]
+}
+
+color{
+id color
+varchar nombre
+}
+
+genero{
+id genero
+varchar nombre
+}
+
+stock{
+id stock
+fk zapatilla
+int cantidad
+}

@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Index";
+}
+<div class = "container">
+<form action='@Url.Action("VerificarSignIn", "Home")' method="post" class="SignIn" onsubmit="return validarFormulario()">
+    <h2>Registrarse</h2>
+    <div class="formulario">
+        <label for="UserName">Nombre de Usuario</label>
+        <input type="text" name="UserName" required>
+
+        <label for="Nombre">Nombre</label>
+        <input type="text" name="Nombre" required>
+
+        <label for="Email">Email</label>
+        <input type="email" name="Email" required>
+
+        <label for="Telefono">Teléfono</label>
+        <input type="text" name="Telefono" required>
+
+        <label for="Contrasena">Contraseña</label>
+        <input type="password" name="Contrasena" required>
+        <p id="errorContrasena" class="error-message"></p>
+
+        <label for="Contrasena2">Confirmar Contraseña</label>
+        <input type="password" name="Contrasena2" required>
+        <p id="errorConfirmarContrasena" class="error-message"></p>
+    </div>
+    <button type="submit" class="boton-submit">Registrarse</button>
+    <p class = "error-message">@ViewBag.MensajeError</p>
+</form>
+</div>
+
