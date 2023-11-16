@@ -35,10 +35,6 @@ function toggleSearch() {
     searchInput.classList.toggle("active");
 }
 
-function toggleMenu() {
-    // Agrega aquí el código para mostrar/ocultar el menú lateral izquierdo
-}
-
 // Manejar la pulsación de la tecla "Enter" en el campo de búsqueda
 searchInput.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {

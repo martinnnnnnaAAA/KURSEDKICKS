@@ -110,13 +110,13 @@ public static class BD
         }
     }
 
-    public static List<MODELO> ObtenerModelos()
+    public static List<MODELO> ObtenerModelos(int pagMandada = 1)
     {
         List<MODELO> ListadoModelos = null;
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            string SP = "SP_ObtenerModelos";
-            ListadoModelos = db.Query<MODELO>(SP, commandType: CommandType.StoredProcedure).ToList();
+            string SP = "SP_ObtenerModelosXDefault";
+            ListadoModelos = db.Query<MODELO>(SP, new { pag = pagMandada }, commandType: CommandType.StoredProcedure).ToList();
             return ListadoModelos;
         }
     }
@@ -148,7 +148,7 @@ public static class BD
     //         return tabla;
     //     }
     //   }
-    
+
 }
 
 
