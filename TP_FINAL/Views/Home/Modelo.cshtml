@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Zapatilla";
+}
+
+<img src="/Images/@ViewBag.Zapatilla.Foto">
+<h1>@ViewBag.Zapatilla.Nombre</h1>
+<h2>@ViewBag.Zapatilla.Precio</h2>
+
+<form action='@Url.Action("AgregarAlCarrito")' method="post" class="formulario-zapatillas">
+    <div class="formulario-colores">
+        <label>Colores:</label>
+        <div class="color-options">
+            @foreach (COLOR item in ViewBag.Colores)
+            {
+                <input type="radio" name="Color" value="@item.IdColor"> @item.Nombre
+            }
+        </div>
+    </div>
+    <div class="formulario-talles">
+        <label>Talles:</label>
+        <div class="color-options">
+            @foreach (TALLE item in ViewBag.Talles)
+            {
+                <input type="radio" name="Talle" value="@item.IdTalle"> @item.Numero
+            }
+        </div>
+    </div>
+
+    <div class="formulario-botones">
+        <button type="submit" class="boton-b">Agregar al carrito</button>
+    </div>
+</form>
+

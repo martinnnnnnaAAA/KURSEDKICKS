@@ -8,6 +8,7 @@ namespace TP_PREGUNTADORT;
 public static class BD
 {
     private static string _connectionString = @"Server=localhost;DataBase=DB_TPFINAL;Trusted_Connection=True;";
+    public static USUARIO user;
 
     //SISTEMA CUENTAS
 
