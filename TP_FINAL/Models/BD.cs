@@ -120,6 +120,17 @@ public static class BD
             return ListadoModelos;
         }
     }
+    public static void InsertarCarrito(MODELOXTALLEXCOLOR Zapatilla)
+    {
+      using (SqlConnection db = new SqlConnection(_connectionString))
+      {
+         string SQL = "INSERT INTO ";
+      }
+    }
+    public static List<CARRITO> ObtenerCarrito()
+    {
+
+    }
 
 
 

@@ -85,8 +85,14 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Carrito(List<CARRITO> Carrito)
+    public IActionResult AgregarAlCarrito(MODELOXTALLEXCOLOR Zapatilla)
     {
-        ViewBag.zapatillaCarrito = Carrito;
+        BD.InsertarCarrito(Zapatilla);
+        return View("Zapatilla");
+    }
+    public IActionResult Carrito ()
+    {
+        ViewBag.ZapatillaCarrito = BD.ObtenerCarrito();
+        return View();
     }
 }
