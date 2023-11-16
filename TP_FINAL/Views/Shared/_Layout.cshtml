@@ -13,16 +13,13 @@
 
 <body>
     <div class="navbar">
-      <div class="menu-button" id="menu-button">
-        <div id="menu-icon">&#9776;</div>
+      <div>
+      @* vacio para ocupar el espacio izquierdo *@
       </div>
       <div class="center-logo">
-        <a href='@Url.Action("HomeTienda","Home")'><img style = "width:5%"src="/Images/logo.png" alt=""></a>
+        <a href='@Url.Action("HomeTienda","Home")'><img style = "width:12%"src="/Images/logo.png" alt=""></a>
       </div>
       <div class="right-section">
-        <div class="favorites">
-          <a href="/favorites"><img class = "img-navbar" src="/Images/favoritos.png" alt=""></a>
-        </div>
         <div class="search">
           <input type="text" id="search-input" placeholder="Buscar">
         </div>
@@ -30,7 +27,7 @@
           &#128269;
         </div>
         <div class="profile">
-          <a href="/profile"><img class = "img-navbar" src="/Images/perfil.png" alt=""></a>
+          <a href="/profile"><img style="width:100%" class = "img-navbar" src="/Images/perfil.png" alt=""></a>
         </div>
         <div class="cart">
           <a href='@Url.Action("Carrito","Home")'><img class = "img-navbar" src="/Images/carrito.png" alt=""></a>
