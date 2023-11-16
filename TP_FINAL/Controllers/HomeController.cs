@@ -84,4 +84,9 @@ public class HomeController : Controller
         ViewBag.Modelo = BD.ObtenerModelos();
         return View();
     }
+
+    public IActionResult Carrito(List<CARRITO> Carrito)
+    {
+        ViewBag.zapatillaCarrito = Carrito;
+    }
 }
