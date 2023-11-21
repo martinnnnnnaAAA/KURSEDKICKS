@@ -138,7 +138,13 @@ public static class BD
         }
     }
 
-
+      public static List<TALLE> ObtenerTallePorId(int IdTalle)
+    {
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SQL = "SELECT * FROM Talle where IdTale = @pIdTalle";
+            return db.Query<TALLE>(SQL, new{pIdTalle= IdTalle}).ToList();
+        }
 
     // public static CATEGORIA traerCategoriadePregunta(int idPregunta)
     // {

@@ -84,18 +84,20 @@ public class HomeController : Controller
         ViewBag.Modelo = BD.ObtenerModelos();
         return View();
     }
-<<<<<<< HEAD
     
     public IActionResult Carrito(List<CARRITO> Carrito)
-=======
-    public IActionResult Modelo(MODELO item)
->>>>>>> 5c54e0149e0b02aa7386ea398ee5cfb691d63368
     {
         ViewBag.User = BD.user;
-        ViewBag.Zapatilla = item;
+        ViewBag.Zapatilla = Carrito;
         ViewBag.Colores = BD.ObtenerColores();
         ViewBag.Talles = BD.ObtenerTalles();
         return View();
+    }
+
+    public List<TALLE> infoSeries(int IdTalle)
+    {
+        List<TALLE> talle = BD.ObtenerTallePorId(IdTalle);
+        return talle;
     }
 }
 

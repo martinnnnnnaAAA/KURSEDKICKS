@@ -45,3 +45,23 @@ searchInput.addEventListener("keyup", function(event) {
 });
 
 // Agregar cualquier otro comportamiento interactivo necesario
+
+
+function MostrarTalles(IdT)
+{
+    $.ajax(
+            {
+                type:'POST',
+                dataType:'JSON',
+                url:'/Home/infoTalles',
+                data:{IdTalle:IdT},
+                success:
+                function(response)
+                {
+                    $("#ModalTitulo").html("Talles");
+                    $("#Info").html(response.Numero);
+                    $("#Info").html(response.Centimetros);
+                }
+            }
+    );
+}
