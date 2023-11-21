@@ -120,23 +120,6 @@ public static class BD
             return ListadoModelos;
         }
     }
-    public static void InsertarCarrito(MODELOXTALLEXCOLOR Zapatilla)
-    {
-      using (SqlConnection db = new SqlConnection(_connectionString))
-      {
-        string SP = "SP_InsertarCarrito";      
-      }
-    }
-    public static List<CARRITO> ObtenerCarrito(USUARIO User)
-    {
-        List<CARRITO> ListaCarrito = null;
-         using (SqlConnection db = new SqlConnection(_connectionString))
-        {
-         string SQL = "SELECT * FROM CARRITO WHERE FkUsuario = @UserId";
-         ListaCarrito = db.Query<CARRITO>(SQL).ToList();
-         return ListaCarrito;
-        }
-    }
 
 
 

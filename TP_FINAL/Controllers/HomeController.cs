@@ -84,12 +84,7 @@ public class HomeController : Controller
         ViewBag.Modelo = BD.ObtenerModelos();
         return View();
     }
-<<<<<<< HEAD
-    
-    public IActionResult Carrito(List<CARRITO> Carrito)
-=======
     public IActionResult Modelo(MODELO item)
->>>>>>> 5c54e0149e0b02aa7386ea398ee5cfb691d63368
     {
         ViewBag.User = BD.user;
         ViewBag.Zapatilla = item;
@@ -97,5 +92,7 @@ public class HomeController : Controller
         ViewBag.Talles = BD.ObtenerTalles();
         return View();
     }
+   
+    
 }
 
