@@ -92,10 +92,5 @@ public class HomeController : Controller
         ViewBag.Talles = BD.ObtenerTalles();
         return View();
     }
-
-    public IActionResult Carrito(List<CARRITO> Carrito)
-    {
-        ViewBag.zapatillaCarrito = Carrito;
-        return View();
-    }
 }
+
