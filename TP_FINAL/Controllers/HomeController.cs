@@ -92,7 +92,15 @@ public class HomeController : Controller
         ViewBag.Talles = BD.ObtenerTalles();
         return View();
     }
-   
-    
+     public IActionResult AgregarAlCarrito(int Color, int Talle, int Modelo){
+        BD.InsertarCarrito(Modelo,Talle,Color);
+        return View("Carrito");
+    }
+
+    public List<TALLE> infoSeries(int IdTalle)
+    {
+        List<TALLE> talle = BD.ObtenerTallePorId(IdTalle);
+        return talle;
+    }
 }
 

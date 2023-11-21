@@ -121,34 +121,34 @@ public static class BD
         }
     }
 
-
-
-    // public static CATEGORIA traerCategoriadePregunta(int idPregunta)
-    // {
-    //     CATEGORIA categoriaelegida = null;
-    //     using (SqlConnection db = new SqlConnection(_connectionString))
-    //     {
-    //         string SQL = "SELECT Categorias.* FROM Categorias INNER JOIN Preguntas ON Categorias.IdCategoria = Preguntas.IdCategoria WHERE IdPregunta = @pidpregunta";
-    //         categoriaelegida = db.QueryFirstOrDefault<CATEGORIA>(SQL, new { pidpregunta = idPregunta });
-    //         return categoriaelegida;
-    //     }
-    // }
-    //     public static void AgregarHighScore(string Username, int Puntaje)
-    //     {
-    //         string SQL = "INSERT INTO HighScore(Username,Puntaje,FechaHora) VALUES(@pUsername,@pPuntaje,@pFechaHora)";
-    //         using (SqlConnection db = new SqlConnection(_connectionString))
-    //         {
-    //             db.Execute(SQL, new { pUsername = Username, pPuntaje = Puntaje, pFechaHora = DateTime.Now });
-    //         }
-    //     }
-    //     public static List<HighScore> TraerHighScore() {
-    //     using(SqlConnection db = new SqlConnection(_connectionString)){
-    //         string SQL = "SELECT * FROM HighScore Order By Puntaje desc";
-    //         List<HighScore> tabla = db.Query<HighScore>(SQL).ToList();
-    //         return tabla;
-    //     }
-    //   }
-
+      public static List<TALLE> ObtenerTallePorId(int IdTalle)
+    {
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SQL = "SELECT * FROM Talle where IdTale = @pIdTalle";
+            return db.Query<TALLE>(SQL, new{pIdTalle= IdTalle}).ToList();
+        }
+    }
+      public static void InsertarCarrito(int Modelo, int Talle, int Color)
+    {
+        USUARIO user = BD.user;
+      using (SqlConnection db = new SqlConnection(_connectionString))
+      {
+        string SP = "SP_InsertarAlCarrito";
+        db.Execute(SP, new { IdModelo = Modelo, IdTalle = Talle,  IdColor = Color, IdUsuario = user.IdUsuario}, commandType: CommandType.StoredProcedure).ToList();
+      }
+    }
+    public static List<CARRITO> ObtenerCarrito()
+    {
+        USUARIO user = BD.user;
+        List<CARRITO> ListaCarrito = null;
+         using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+         string SQL = "SELECT * FROM CARRITO WHERE FkUsuario = @user.IdUsuario";
+         ListaCarrito = db.Query<CARRITO>(SQL).ToList();
+         return ListaCarrito;
+        }
+    }
 }
 
 

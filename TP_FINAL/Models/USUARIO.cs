@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 public class USUARIO{
-
+public int IdUsuario{get;set;}
 public string UserName{get;set;}
 public string Contrasena{get;set;}
 public string Nombre{get;set;}
