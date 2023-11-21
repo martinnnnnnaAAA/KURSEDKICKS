@@ -8,6 +8,7 @@ namespace TP_PREGUNTADORT;
 public static class BD
 {
     private static string _connectionString = @"Server=localhost;DataBase=DB_TPFINAL;Trusted_Connection=True;";
+    public static USUARIO user;
 
     //SISTEMA CUENTAS
 
@@ -63,7 +64,6 @@ public static class BD
     // SISTEMA KURSED KICKS
 
 
-
     public static List<GENERO> ObtenerGeneros()
     {
         using (SqlConnection db = new SqlConnection(_connectionString))
@@ -110,14 +110,31 @@ public static class BD
         }
     }
 
-    public static List<MODELO> ObtenerModelos()
+    public static List<MODELO> ObtenerModelos(int pagMandada = 1)
     {
         List<MODELO> ListadoModelos = null;
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
-            string SP = "SP_ObtenerModelos";
-            ListadoModelos = db.Query<MODELO>(SP, commandType: CommandType.StoredProcedure).ToList();
+            string SP = "SP_ObtenerModelosXDefault";
+            ListadoModelos = db.Query<MODELO>(SP, new { pag = pagMandada }, commandType: CommandType.StoredProcedure).ToList();
             return ListadoModelos;
+        }
+    }
+    public static void InsertarCarrito(MODELOXTALLEXCOLOR Zapatilla)
+    {
+      using (SqlConnection db = new SqlConnection(_connectionString))
+      {
+        string SP = "SP_InsertarCarrito";      
+      }
+    }
+    public static List<CARRITO> ObtenerCarrito(USUARIO User)
+    {
+        List<CARRITO> ListaCarrito = null;
+         using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+         string SQL = "SELECT * FROM CARRITO WHERE FkUsuario = @UserId";
+         ListaCarrito = db.Query<CARRITO>(SQL).ToList();
+         return ListaCarrito;
         }
     }
 
@@ -148,7 +165,7 @@ public static class BD
     //         return tabla;
     //     }
     //   }
-    
+
 }
 
 
