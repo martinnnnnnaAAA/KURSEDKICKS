@@ -23,8 +23,8 @@ public class HomeController : Controller
         ViewBag.User = BD.TraerUsuario(UserName, "UserName");
         if (ViewBag.User != null && Contrasena == ViewBag.User.Contrasena)
         {
-            
-            return RedirectToAction("HomeTienda", ViewBag.User );
+            BD.user = ViewBag.User;
+            return RedirectToAction("HomeTienda");
         }
         ViewBag.MensajeErrorLogIn = "Usuario y/o Contraseña no válidos";
         return View("LogIn");
@@ -73,9 +73,9 @@ public class HomeController : Controller
 
     // SISTEMA KURSED KICKS
 
-    public IActionResult HomeTienda(USUARIO User)
+    public IActionResult HomeTienda()
     {
-        ViewBag.User = User;
+        ViewBag.User = BD.user;
         ViewBag.Generos = BD.ObtenerGeneros();
         ViewBag.Marcas = BD.ObtenerMarcas();
         ViewBag.Colores = BD.ObtenerColores();
@@ -84,4 +84,18 @@ public class HomeController : Controller
         ViewBag.Modelo = BD.ObtenerModelos();
         return View();
     }
+<<<<<<< HEAD
+    
+    public IActionResult Carrito(List<CARRITO> Carrito)
+=======
+    public IActionResult Modelo(MODELO item)
+>>>>>>> 5c54e0149e0b02aa7386ea398ee5cfb691d63368
+    {
+        ViewBag.User = BD.user;
+        ViewBag.Zapatilla = item;
+        ViewBag.Colores = BD.ObtenerColores();
+        ViewBag.Talles = BD.ObtenerTalles();
+        return View();
+    }
 }
+
