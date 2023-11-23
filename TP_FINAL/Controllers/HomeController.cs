@@ -92,15 +92,37 @@ public class HomeController : Controller
         ViewBag.Talles = BD.ObtenerTalles();
         return View();
     }
-     public IActionResult AgregarAlCarrito(int Color, int Talle, int Modelo){
-        BD.InsertarCarrito(Modelo,Talle,Color);
+     public IActionResult AgregarAlCarrito(int Color, int Talle, int Modelo, float Precio){
+        BD.InsertarCarrito(Modelo,Talle,Color,Precio);
+        ViewBag.ListaDetalleCarrito = BD.ObtenerDetalleCarrito();
+        ViewBag.Carrito = BD.ObtenerCarrito();
         return View("Carrito");
     }
-
-    public List<TALLE> infoSeries(int IdTalle)
+       public string Promociones(int mes)
     {
-        List<TALLE> talle = BD.ObtenerTallePorId(IdTalle);
-        return talle;
+        string Promociones = "";
+        switch(mes){
+            case 1:
+             Promociones = "10% de descuento en efectivo";
+            return Promociones;
+            case 11:
+             Promociones = "Muñeco de regalo";
+           return Promociones;
+            case 12:
+             Promociones = "15% de descuento por fiestas, en cualquier forma de pago";
+             return Promociones;
+
+
+        }
+          return Promociones;
+       
     }
+
+    public List<TALLE> infoTalles()
+    {
+        List<TALLE> talles = BD.ObtenerTalles();
+        return talles;
+    }
+    
 }
 

@@ -129,24 +129,37 @@ public static class BD
             return db.Query<TALLE>(SQL, new{pIdTalle= IdTalle}).ToList();
         }
     }
-      public static void InsertarCarrito(int Modelo, int Talle, int Color)
+      public static void InsertarCarrito(int Modelo, int Talle, int Color, float Precio)
     {
         USUARIO user = BD.user;
       using (SqlConnection db = new SqlConnection(_connectionString))
       {
-        string SP = "SP_InsertarAlCarrito";
-        db.Execute(SP, new { IdModelo = Modelo, IdTalle = Talle,  IdColor = Color, IdUsuario = user.IdUsuario}, commandType: CommandType.StoredProcedure).ToList();
+        string SP = "SP_InsertarAlDetalleCarrito";
+        db.Execute(SP, new { IdUsuario = user.IdUsuario, FkModelo = Modelo, FkTalle = Talle,  FkColor = Color, Subtotal = Precio}, commandType: CommandType.StoredProcedure);
       }
     }
-    public static List<CARRITO> ObtenerCarrito()
+    public static List<DETALLECARRITO> ObtenerDetalleCarrito()
     {
         USUARIO user = BD.user;
-        List<CARRITO> ListaCarrito = null;
+        int IdUsuario = user.IdUsuario;
+        List<DETALLECARRITO> ListaCarrito = null;
          using (SqlConnection db = new SqlConnection(_connectionString))
         {
-         string SQL = "SELECT * FROM CARRITO WHERE FkUsuario = @user.IdUsuario";
-         ListaCarrito = db.Query<CARRITO>(SQL).ToList();
-         return ListaCarrito;
+            string SP = "SP_TraerDetalleCarrito";
+            ListaCarrito = db.Query<DETALLECARRITO>(SP, new { IdUsuario = IdUsuario }, commandType: CommandType.StoredProcedure).ToList();
+            return ListaCarrito;
+        }
+    }
+    public static CARRITO ObtenerCarrito()
+    {
+        USUARIO user = BD.user;
+        int IdUsuario = user.IdUsuario;
+        CARRITO Carrito = null;
+         using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_TraerCarrito";
+            Carrito = db.QueryFirstOrDefault<CARRITO>(SP, new { IdUsuario = IdUsuario }, commandType: CommandType.StoredProcedure);
+            return Carrito;
         }
     }
 }

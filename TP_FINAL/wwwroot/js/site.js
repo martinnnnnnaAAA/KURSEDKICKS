@@ -36,7 +36,7 @@ function toggleSearch() {
 }
 
 // Manejar la pulsación de la tecla "Enter" en el campo de búsqueda
-searchInput.addEventListener("keyup", function(event) {
+searchInput.addEventListener("keyup", function (event) {
     if (event.key === "Enter") {
         // Realizar la acción deseada, por ejemplo, redirigir a la página de resultados de búsqueda
         const query = searchInput.value;
@@ -47,21 +47,25 @@ searchInput.addEventListener("keyup", function(event) {
 // Agregar cualquier otro comportamiento interactivo necesario
 
 
-function MostrarTalles(IdT)
-{
+function MostrarTalles() {
     $.ajax(
-            {
-                type:'POST',
-                dataType:'JSON',
-                url:'/Home/infoTalles',
-                data:{IdTalle:IdT},
-                success:
-                function(response)
-                {
-                    $("#ModalTitulo").html("Talles");
-                    $("#Info").html(response.Numero);
-                    $("#Info").html(response.Centimetros);
+        {
+            type: 'POST',
+            dataType: 'JSON',
+            url: '/Home/infoTalles',
+            success:
+                function (response) {
+                    $("#ModalTitulo").html("Tabla de Talles");
+                    let htmlfila="";
+                    for(let item of response) {
+                        htmlfila += "<tr>";
+                        htmlfila += "<td>" +  item.numero +"</td>";
+                        htmlfila += "<td>" +  item.centimetros +"</td>";
+                        htmlfila += "</tr>";
+                    }
+                    $("#DatosTalles").html(htmlfila);
+                   
                 }
-            }
+        }
     );
 }
