@@ -92,12 +92,21 @@ public class HomeController : Controller
         ViewBag.Talles = BD.ObtenerTalles();
         return View();
     }
+    
+    public IActionResult Carrito(){
+        ViewBag.ListaDetalleCarrito = BD.ObtenerDetalleCarrito();
+        ViewBag.Carrito = BD.ObtenerCarrito();
+        return View("Carrito");
+    }
      public IActionResult AgregarAlCarrito(int Color, int Talle, int Modelo, float Precio){
         BD.InsertarCarrito(Modelo,Talle,Color,Precio);
         ViewBag.ListaDetalleCarrito = BD.ObtenerDetalleCarrito();
         ViewBag.Carrito = BD.ObtenerCarrito();
         return View("Carrito");
     }
+    // public IActionResult EliminarDelCarrito(){
+
+    // } PENDIENTE PARA AJAX
        public string Promociones(int mes)
     {
         string Promociones = "";
