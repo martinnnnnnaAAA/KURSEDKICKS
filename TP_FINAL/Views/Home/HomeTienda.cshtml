@@ -47,6 +47,35 @@
 
 <section>
   
+  <div class="wrapper">
+  
+  <div class="dropdown">
+    <button id="dropdownBtnSort">Sort By <i class="fa-solid fa-chevron-down"></i></button>
+    <div id="dropdownSortOptions" class="dropdownSortOptions">
+      @* <a href='@Url.Action("HomeTienda", "Home", new {pagMandada = ViewBag.PaginaActual-1})' class="sortOption"> HAY QUE ADAPTAR LOS URL ACTION*@
+      <a href="#" class="sortOption">Name <span>A - Z</span></a>
+      <a href="#" class="sortOption">Name <span>Z - A</span></a>
+      <a href="#" class="sortOption">Age <span>ASC</span></a>
+      <a href="#" class="sortOption">Age <span>DESC</span></a>
+    </div>
+  </div>
+  
+  <div class="dropdown">
+    <button id="dropdownBtnFilter">Filter<i class="fa-solid fa-chevron-down"></i></button>
+    <div id="dropdownFilterOptions" class="dropdownFilterOptions">
+      <a href="#" class="filterOption">Right Handed</a>
+      <a href="#" class="filterOption">Left Handed</a>
+    </div>
+  </div>
+  
+  <button id="clearBtn">Reset</button>
+  
+</div>
+
+<div id="list">
+  
+</div>
+
   <div class="container-fluid">
     <div class="row">
       @foreach (MODELO item in ViewBag.Modelo)
@@ -177,6 +206,138 @@
     color: #666666;
     border: 1px solid #666666;
   }
+  
+body {
+  margin: 0;
+  background-color: #302E2E;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  height: 38px;
+  margin: 30px;
+}
+
+#list {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#list div{
+  background-color: rgb(70,70,70);
+  width: 200px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+  color: white;
+  border-radius: 5px;
+}
+#list div h2{
+  font-size: 20px;
+  margin: 0;
+}
+
+.dropdown {
+  width: 200px;
+  position: relative;
+  z-index: 5;
+  margin: 0 10px;
+}
+#dropdownBtnSort, #dropdownBtnFilter {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  border: 2px solid white;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #302E2E;
+  color: white;
+  position: relative;
+  --active-col: #302E2E;
+}
+#dropdownBtnSort i, #dropdownBtnFilter i {
+  float: right;
+  transform: rotate(0deg);
+}
+
+#dropdownBtnSort::before {
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: calc(100% - 20px);
+  background-color: var(--active-sort-col);
+  left: 10px;
+  top: 2px;
+}
+
+#dropdownBtnFilter::before {
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: calc(100% - 20px);
+  background-color: var(--active-filter-col);
+  left: 10px;
+  top: 2px;
+}
+
+#dropdownSortOptions, #dropdownFilterOptions {
+  display: none;
+  background-color: #302E2E;
+  flex-direction: column;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+  border: 2px solid white;
+}
+#dropdownFilterOptions {
+  display: none;
+  background-color: #302E2E;
+  flex-direction: column;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+  border: 2px solid white;
+}
+.sortOption, .filterOption {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+.sortOption span, .filterOption span {
+ float: right;
+}
+
+.sortOption:hover, .filterOption:hover {
+  background-color: #6E6E6E;
+}
+
+.selected {
+  position: relative;
+  color: #F5B32F;
+}
+.selected::before {
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: calc(100% - 20px);
+  background-color: #F5B32F;
+  left: 10px;
+  bottom: 7px;
+}
+
+#clearBtn {
+  height: 38.5px;
+  padding: 0 10px;
+  border: 2px solid white;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #302E2E;
+  color: white;
+  margin-left: 20px;
+}
 </style>
 
 
