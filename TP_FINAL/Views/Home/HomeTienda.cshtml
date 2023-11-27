@@ -1,10 +1,12 @@
 @{
-    ViewData["Title"] = "Index";
+  ViewData["Title"] = "Index";
 }
 
+@* CARRUSEL *@
 <div id="carouselExampleDark" class="carousel carousel-dark slide">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true"
+      aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
@@ -40,32 +42,143 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+@* FIN CARRUSEL *@
 
 
 <section>
-    <div class="container-fluid">
-        <div class="row">
-            @foreach (MODELO item in ViewBag.Modelo)
-            {
-                <div class="col-md-3 col-12">
-                    <a href='@Url.Action("Modelo", "Home", item)'>
-                            <div class="card">
-                                <img src="/Images/@item.Foto" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">@item.Nombre</h5>
-                                    <p class="card-text">@item.Descripcion</p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item" style="height:30px;">@item.MarcaNombre</li>
-                                    <li class="list-group-item" style ="height:30px;">Genero: @item.GeneroNombre</li>
-                                    <li class="list-group-item"style ="height:30px;">USD $@item.Precio</li>
-                                </ul>
-                            </div>
-                    </a>
-                </div>
-            }
+  
+  <div class="container-fluid">
+    <div class="row">
+      @foreach (MODELO item in ViewBag.Modelo)
+      {
+        <div class="col-md-3 col-12">
+          <a href='@Url.Action("Modelo", "Home", item)'>
+            <div class="card">
+              <img src="/Images/@item.Foto" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">@item.Nombre</h5>
+                <p class="card-text">@item.Descripcion</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" style="height:30px;">@item.MarcaNombre</li>
+                <li class="list-group-item" style="height:30px;">Genero: @item.GeneroNombre</li>
+                <li class="list-group-item" style="height:30px;">USD $@item.Precio</li>
+              </ul>
+            </div>
+          </a>
         </div>
+      }
+
+      <section class="container-pagination">
+        <div class="pagination">
+          <a href='@Url.Action("HomeTienda", "Home", new {pagMandada = ViewBag.PaginaActual-1})' class="btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </a>
+
+          @for (int i = 1; i <= ViewBag.totalPaginas; i++)
+          {
+            if (i == ViewBag.PaginaActual)
+            {
+              <a href='@Url.Action("HomeTienda", "Home", new { pagMandada = i })'
+                class="page-link page-link--current">@i</a>
+
+            }
+            else
+            {
+              <a href='@Url.Action("HomeTienda", "Home", new { pagMandada = i })' class="page-link">@i</a>
+
+            }
+          }
+
+          <a href='@Url.Action("HomeTienda", "Home", new {pagMandada =ViewBag.PaginaActual + 1})' class="btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+
+        </div>
+      </section>
+
+
     </div>
+
+  </div>
 </section>
 
 <style>
+  body{
+    background-color: #000000;
+  }
+  .container-pagination {
+    font-family: "Inter", sans-serif;
+    color: #343a40;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 200px;
+  }
+
+  .btn {
+    border: 1px solid #ffffff;
+    background-color: #666666;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+  }
+
+  .btn-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;
+    margin-top: 25%;
+  }
+
+  .btn:hover {
+    background-color: #ffffff;
+    border: 1px solid #666666;
+  }
+
+  .btn:hover .btn-icon {
+    stroke: #666666;
+
+  }
+
+  .page-link:link,
+  .page-link:visited {
+    text-decoration: none;
+    background-color: #666666;
+    color: #fff;
+    font-size: 18px;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-link:hover,
+  .page-link:active,
+  .page-link.page-link--current {
+    background-color: #ffffff;
+    color: #666666;
+    border: 1px solid #666666;
+  }
+</style>
+
+
+
+

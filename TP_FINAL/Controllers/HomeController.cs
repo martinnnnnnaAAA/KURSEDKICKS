@@ -73,7 +73,7 @@ public class HomeController : Controller
 
     // SISTEMA KURSED KICKS
 
-    public IActionResult HomeTienda()
+    public IActionResult HomeTienda(int pagMandada = 1)
     {
         ViewBag.User = BD.user;
         ViewBag.Generos = BD.ObtenerGeneros();
@@ -81,7 +81,9 @@ public class HomeController : Controller
         ViewBag.Colores = BD.ObtenerColores();
         ViewBag.Talles = BD.ObtenerTalles();
         ViewBag.MXTXC = BD.ObtenerMXTXC();
-        ViewBag.Modelo = BD.ObtenerModelos();
+        ViewBag.Modelo = BD.ObtenerModelos(pagMandada);
+        ViewBag.TotalPaginas = BD.ObtenerTotalPaginas();
+        ViewBag.PaginaActual = pagMandada;
         return View();
     }
     public IActionResult Modelo(MODELO item)

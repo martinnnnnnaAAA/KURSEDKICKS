@@ -110,7 +110,7 @@ public static class BD
         }
     }
 
-    public static List<MODELO> ObtenerModelos(int pagMandada = 1)
+    public static List<MODELO> ObtenerModelos(int pagMandada)
     {
         List<MODELO> ListadoModelos = null;
         using (SqlConnection db = new SqlConnection(_connectionString))
@@ -120,43 +120,56 @@ public static class BD
             return ListadoModelos;
         }
     }
+    public static int ObtenerTotalPaginas()
+    {
+        int totalDatos = 0;
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_ObtenerTodosLosModelos";
+            totalDatos = db.Query<int>(SP, commandType: CommandType.StoredProcedure).SingleOrDefault();
 
-      public static List<TALLE> ObtenerTallePorId(int IdTalle)
+        }
+        int datosPorPagina = 12;
+        int totalPaginas = (int)Math.Ceiling((double)totalDatos / datosPorPagina);
+        return totalPaginas;
+    }
+
+    public static List<TALLE> ObtenerTallePorId(int IdTalle)
     {
         using (SqlConnection db = new SqlConnection(_connectionString))
         {
             string SQL = "SELECT * FROM Talle where IdTale = @pIdTalle";
-            return db.Query<TALLE>(SQL, new{pIdTalle= IdTalle}).ToList();
+            return db.Query<TALLE>(SQL, new { pIdTalle = IdTalle }).ToList();
         }
     }
-      public static void InsertarCarrito(int Modelo, int Talle, int Color, float Precio)
+    public static void InsertarCarrito(int Modelo, int Talle, int Color, float Precio)
     {
         USUARIO user = BD.user;
-      using (SqlConnection db = new SqlConnection(_connectionString))
-      {
-        string SP = "SP_InsertarAlDetalleCarrito";
-        db.Execute(SP, new { IdUsuario = user.IdUsuario, FkModelo = Modelo, FkTalle = Talle,  FkColor = Color, Subtotal = Precio}, commandType: CommandType.StoredProcedure);
-      }
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_InsertarAlDetalleCarrito";
+            db.Execute(SP, new { IdUsuario = user.IdUsuario, FkModelo = Modelo, FkTalle = Talle, FkColor = Color, Subtotal = Precio }, commandType: CommandType.StoredProcedure);
+        }
     }
     public static List<DETALLECARRITO> ObtenerDetalleCarrito()
     {
         USUARIO user = BD.user;
         int IdUsuario = user.IdUsuario;
         List<DETALLECARRITO> ListaCarrito = null;
-         using (SqlConnection db = new SqlConnection(_connectionString))
+        using (SqlConnection db = new SqlConnection(_connectionString))
         {
             string SP = "SP_TraerDetalleCarrito";
             ListaCarrito = db.Query<DETALLECARRITO>(SP, new { IdUsuario = IdUsuario }, commandType: CommandType.StoredProcedure).ToList();
             return ListaCarrito;
         }
     }
-        public static void EliminarDetalleCarrito(DETALLECARRITO item)
+    public static void EliminarDetalleCarrito(DETALLECARRITO item)
     {
         int IdDetalle = item.IdDetalleCarrito;
-         using (SqlConnection db = new SqlConnection(_connectionString))
+        using (SqlConnection db = new SqlConnection(_connectionString))
         {
             string SP = "SP_EliminarDetalleCarrito";
-            db.Execute(SP, new {IdDetalle = IdDetalle}, commandType: CommandType.StoredProcedure);
+            db.Execute(SP, new { IdDetalle = IdDetalle }, commandType: CommandType.StoredProcedure);
         }
     }
     public static CARRITO ObtenerCarrito()
@@ -164,7 +177,7 @@ public static class BD
         USUARIO user = BD.user;
         int IdUsuario = user.IdUsuario;
         CARRITO Carrito = null;
-         using (SqlConnection db = new SqlConnection(_connectionString))
+        using (SqlConnection db = new SqlConnection(_connectionString))
         {
             string SP = "SP_TraerCarrito";
             Carrito = db.QueryFirstOrDefault<CARRITO>(SP, new { IdUsuario = IdUsuario }, commandType: CommandType.StoredProcedure);
