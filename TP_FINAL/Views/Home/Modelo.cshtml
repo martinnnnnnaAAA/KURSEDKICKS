@@ -26,11 +26,14 @@
         </div>
     </div>
     <input type="hidden" name="Modelo" value="@ViewBag.Zapatilla.IdModelo">
+    <input type="hidden" name="Precio" value="@ViewBag.Zapatilla.Precio">
+
     <div class="formulario-botones">
         <button type="submit" class="boton-b">Agregar al carrito</button>
     </div>
 
 </form>
+
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal"
     onclick="MostrarTalles()">Tabla de Talles</button>
 
@@ -61,14 +64,15 @@
     </div>
 </div>
 @* <!– Modal Promociones –> *@
-<button type="button" class="btn btn-primary" data-bs-toggle ="modal" data-bs-target="#Modal" onclick="MostrarPromociones(11)" >Conoce las promociones</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal"
+    onclick="MostrarPromociones(11)">Conoce las promociones</button>
 
 
- <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="ModalTitulo" style = color:black;></h1>
+                <h1 class="modal-title fs-5" id="ModalTitulo" style=color:black;></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="ModalBody">
@@ -77,8 +81,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
-            </div>
         </div>
     </div>
+</div>
 
 

@@ -104,6 +104,12 @@ public class HomeController : Controller
         ViewBag.Carrito = BD.ObtenerCarrito();
         return View("Carrito");
     }
+    public IActionResult EliminarDetalleCarrito(DETALLECARRITO item){
+        BD.EliminarDetalleCarrito(item);
+        ViewBag.ListaDetalleCarrito = BD.ObtenerDetalleCarrito();
+        ViewBag.Carrito = BD.ObtenerCarrito();
+        return View("Carrito");
+    }
     // public IActionResult EliminarDelCarrito(){
 
     // } PENDIENTE PARA AJAX

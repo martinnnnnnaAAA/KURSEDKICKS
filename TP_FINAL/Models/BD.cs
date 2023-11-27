@@ -150,6 +150,15 @@ public static class BD
             return ListaCarrito;
         }
     }
+        public static void EliminarDetalleCarrito(DETALLECARRITO item)
+    {
+        int IdDetalle = item.IdDetalleCarrito;
+         using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_EliminarDetalleCarrito";
+            db.Execute(SP, new {IdDetalle = IdDetalle}, commandType: CommandType.StoredProcedure);
+        }
+    }
     public static CARRITO ObtenerCarrito()
     {
         USUARIO user = BD.user;
