@@ -46,6 +46,23 @@ searchInput.addEventListener("keyup", function (event) {
 
 // Agregar cualquier otro comportamiento interactivo necesario
 
+function MostrarPromociones(pMes) {
+    $.ajax({
+        type: 'POST',
+        dataType: 'text',
+        url: '/Home/Promociones',
+        data: { mes: pMes },
+        success: function (response) {
+            console.log(response);
+            var promociones = response;
+            $("#ModalTituloPromo").html("Promociones este mes");
+            $("#InfoPromo").html(promociones);
+        }
+       
+    });
+}
+
+
 
 function MostrarTalles() {
     $.ajax(

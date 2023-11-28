@@ -92,6 +92,7 @@ public class HomeController : Controller
         ViewBag.Zapatilla = item;
         ViewBag.Colores = BD.ObtenerColores();
         ViewBag.Talles = BD.ObtenerTalles();
+        ViewBag.Mes = DateTime.Now.Month;
         return View();
     }
     
@@ -141,5 +142,22 @@ public class HomeController : Controller
         return talles;
     }
     
+    public string Promociones(int mes)
+{
+    string Promociones = "No hay promos";
+    switch(mes){
+        case 1:
+            Promociones = "En el mes de enero hay llavero , de regalo";
+            break;
+        case 11:
+            Promociones = "En el mes noviembre hay muñeco de regalo con la compra de una zapatilla";
+            break;
+        case 12:
+            Promociones = "Cordones fluor de regalo por navidades";
+            break;
+    }
+    return Promociones;
+}
+
 }
 

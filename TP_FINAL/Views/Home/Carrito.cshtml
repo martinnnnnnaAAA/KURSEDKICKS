@@ -1,5 +1,5 @@
 <h1>Shopping cart</h1>
-
+@if(ViewBag.User != null){
 <section>
         <div class='container'>
             <div class='window'>
@@ -18,7 +18,7 @@
                                         <td>
                                             <br> <span class='thin'>@item.NombreMarca</span>
                                             <br> @item.NombreModelo<br> <span class='thin small'> Color: @item.Color,
-                                                Talle: @item.Talle<br><br></span>
+                                                Size: @item.Talle<br><br></span>
                                         </td>
 
                                     </tr>
@@ -92,7 +92,10 @@
             </div>
         </div>
 </section>
-
+}
+else{
+    <h2> log in to continue purchasing</h2>
+}
 <style>
     body,
     html {
