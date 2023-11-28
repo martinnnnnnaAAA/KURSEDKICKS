@@ -4,9 +4,13 @@
     </div>
 
 
+
+
     <div class="zapatilla-info">
         <h1>@ViewBag.Zapatilla.Nombre</h1>
-        <h2>USD $@ViewBag.Zapatilla.Precio</h2>
+        <h2>$@ViewBag.Zapatilla.Precio USD</h2>
+
+
 
 
         <form action='@Url.Action("AgregarAlCarrito")' method="post" class="formulario-zapatillas">
@@ -34,6 +38,8 @@
             <input type="hidden" name="Precio" value="@ViewBag.Zapatilla.Precio">
 
 
+
+
             @if (ViewBag.User != null)
             {
                 <div class="formulario-botones">
@@ -43,8 +49,12 @@
         </form>
 
 
+
+
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal"
             onclick="MostrarTalles()">Size Chart</button>
+
+
 
 
         <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -79,6 +89,10 @@
 
 
 
+
+
+
+
         <div class="modal fade" id="ModalPromociones" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -95,24 +109,35 @@
                 </div>
             </div>
         </div>
-        
+
+
+        <h3 style="max-width: 700px;margin-top:5%; color:grey">@ViewBag.Zapatilla.Descripcion</h3>
+       
             @if(ViewBag.User==null)
             {
-                <h3>Before purchasing this shoe, you need to Log In! </h3>
+                <h3 style="margin-top:5%">Before purchasing this shoe, you need to Log In! </h3>
             }
+           
     </div>
 </div>
 
+
 <style>
     .zapatilla-container {
+       justify-content: center;
+       margin-top: 20px;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
     }
+
+
 
 
     .zapatilla-img {
         margin-right: 20px;
     }
+
+
 
 
     .formulario-zapatillas {
@@ -121,11 +146,15 @@
     }
 
 
+
+
     .formulario-colores,
     .formulario-talles,
     .formulario-botones {
         margin-top: 10px;
     }
+
+
 
 
     .btn-primary {
@@ -136,6 +165,8 @@
     }
 
 
+
+
     .btn-primary:hover {
         background-color: black;
         border-color: black;
@@ -143,14 +174,18 @@
     }
 
 
+
+
     h2 {
         margin-top: 10px;
         color: black;
     }
 
+
     @*HACERESTO*@.-bs-btn-active-bg {
         background-color: red;
     }
+
 
     .color-options label,
     .talle-options label {
@@ -164,10 +199,14 @@
     }
 
 
+
+
     .color-options input,
     .talle-options input {
         display: none;
     }
+
+
 
 
     .color-options input:checked+label,
@@ -176,6 +215,7 @@
         border-color: black;
         color: #fff;
     }
+
 
     .label:hover {
         background-color: black;

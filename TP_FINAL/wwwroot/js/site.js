@@ -1,8 +1,10 @@
-﻿function validarFormulario() {
+﻿
+function validarFormulario() {
     var Contrasena = document.getElementsByName("Contrasena")[0].value;
     var confirmarContrasena = document.getElementsByName("Contrasena2")[0].value;
     var errorContrasena = document.getElementById("errorContrasena");
     var errorConfirmarContrasena = document.getElementById("errorConfirmarContrasena");
+
 
     // Verificar longitud mínima y otros requisitos usando expresiones regulares
     var regex = /[!@#$%^&*()_*{}\[\]:;<>,.?~\\]/;
@@ -13,6 +15,7 @@
         errorContrasena.textContent = "";
     }
 
+
     // Verificar coincidencia con la confirmación de Contrasena
     if (Contrasena !== confirmarContrasena) {
         errorConfirmarContrasena.textContent = "Passwords do not match. Please try again.";
@@ -21,8 +24,11 @@
         errorConfirmarContrasena.textContent = "";
     }
 
+
     return true;
 }
+
+
 
 
 function MostrarPromociones(pMes) {
@@ -40,6 +46,21 @@ function MostrarPromociones(pMes) {
        
     });
 }
+function MostrarExito() {
+    $.ajax(
+        {
+            type: 'POST',
+            dataType: 'text',
+            url: '/Home/Exito',
+            success: function (response) {
+                console.log(response);
+                var exito = response;
+                    $("#ModalTituloExit").html("Succesful checkout");
+                    $("#InfoExit").html(exito);
+                    }
+                });
+            }
+
 
 
 
@@ -65,4 +86,8 @@ function MostrarTalles() {
         }
     );
 }
+
+
+
+
 

@@ -77,7 +77,7 @@ public class HomeController : Controller
 
     // SISTEMA KURSED KICKS
 
-    public IActionResult HomeTienda(int pagMandada = 1)
+    public IActionResult HomeTienda(int opcionSort, int pagMandada = 1)
     {
         ViewBag.User = BD.user;
         ViewBag.Generos = BD.ObtenerGeneros();
@@ -85,9 +85,10 @@ public class HomeController : Controller
         ViewBag.Colores = BD.ObtenerColores();
         ViewBag.Talles = BD.ObtenerTalles();
         ViewBag.MXTXC = BD.ObtenerMXTXC();
-        ViewBag.Modelo = BD.ObtenerModelos(pagMandada);
+        ViewBag.Modelo = BD.ObtenerModelos(pagMandada, opcionSort);
         ViewBag.TotalPaginas = BD.ObtenerTotalPaginas();
         ViewBag.PaginaActual = pagMandada;
+        ViewBag.OpcionSort = opcionSort;
         return View();
     }
     public IActionResult Modelo(MODELO item)
@@ -148,6 +149,12 @@ public class HomeController : Controller
     }
     return Promociones;
 }
+    public string Exito()
+{
+    string exito = "Gracias por tu compra en Kursed Kicks";
+    return exito;
+}
+
 public IActionResult Perfil()
     {
         ViewBag.User = BD.user;

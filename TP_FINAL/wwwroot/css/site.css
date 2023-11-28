@@ -31,7 +31,7 @@ body {
   padding: 10px;
   justify-content: space-between; /* Para espaciar los elementos de manera uniforme */
   position: relative; /* Agregamos esta propiedad */
-  height: 150px;
+  height: 100px;
 }
 
 .img-navbar{
