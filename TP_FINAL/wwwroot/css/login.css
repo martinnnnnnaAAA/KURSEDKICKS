@@ -9,7 +9,7 @@ html {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url("/Images/fondo.jpg"); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la ruta o URL de tu imagen */
+    background-image: url("/Images/fondo2.jpg"); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la ruta o URL de tu imagen */
     background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
     background-position: center; /* Centra la imagen en el fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */

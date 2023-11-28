@@ -1,11 +1,11 @@
 @{
   ViewData["Title"] = "Index";
 }
-<img src="/Images/Carusel2.jpg" class="d-block w-100" alt="...">
+<img src="/Images/lilnas.jpg" class="d-block w-100" style="max-height: 720px;">
 
 
-<section>
-
+<section style="width:50%;margin-left:25%;margin-right:0; background-color:rgb(255, 255, 255);">
+<h1 style="padding-top:5%; padding-left:">Featured Products</h1>
 <div class="dropdown">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Dropdown link
@@ -27,12 +27,9 @@
             <div class="card">
               <img src="/Images/@item.Foto" class="card-img-top" alt="...">
               <div class="card-body">
-                <h5 class="card-title">@item.Nombre</h5>
-                <p class="card-text">@item.Descripcion</p>
+                <h5 class="card-title">@item.MarcaNombre @item.Nombre</h5>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item" style="height:30px;">@item.MarcaNombre</li>
-                <li class="list-group-item" style="height:30px;">Genero: @item.GeneroNombre</li>
                 <li class="list-group-item" style="height:30px;">USD $@item.Precio</li>
               </ul>
             </div>
@@ -87,7 +84,10 @@
 
 <style>
   body {
-    background-color: #000000;
+    background-image: url("/Images/lilnasbyn.jpg"); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la ruta o URL de tu imagen */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen en el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
   }
 
   .container-pagination {
@@ -102,7 +102,8 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: 200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
 
   .btn {
@@ -185,6 +186,23 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  }
+  .card{
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    min-height: 250px;
+  }
+  .card-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color:#000000;
+  }
+  a{
+    text-decoration: none;
+  }
+  .list-group-item{
+    border:none;
   }
 </style>
 
