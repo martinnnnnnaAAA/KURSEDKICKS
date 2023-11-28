@@ -1,7 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
-<div class="container">
+  <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+<div class="container-login">
 
     <a href='@Url.Action("SignIn", "Home")'>
         <button type="button" class="boton-b"> Registrarse </button>
@@ -11,4 +13,3 @@
         <button type="button" class="boton-b"> Iniciar Sesión </button>
     </a>
 </div>
-<h1>TP XX - Index</h1>

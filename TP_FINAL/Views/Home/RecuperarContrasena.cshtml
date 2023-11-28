@@ -1,12 +1,15 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class = "container">
+  <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+
+<div class = "container-login">
 <form action='@Url.Action("VerificarRecuperarContrasena")' method="get" class="CambiarContrasena">
             <div class = "formulario">
-            <label for="Email">Email:</label>
+            <h2 >Email:</h2>
             <input type="email" name="Email" required>
-            <button type="submit" class="boton-submit">Recuperar Contraseña</button>
+            <button type="submit" class="boton-submit">Recover Password</button>
             <p class = "error-message">@ViewBag.MensajeError</p>
             </div>
 </form>

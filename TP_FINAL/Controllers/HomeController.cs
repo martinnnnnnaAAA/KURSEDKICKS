@@ -16,6 +16,10 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult LogOut(){
+        BD.user = null;
+        return View("LogIn");
+    }
     [HttpPost]
     public IActionResult VerificarLogIn(string UserName, string Contrasena)
     {
@@ -26,7 +30,7 @@ public class HomeController : Controller
             BD.user = ViewBag.User;
             return RedirectToAction("HomeTienda");
         }
-        ViewBag.MensajeErrorLogIn = "Usuario y/o Contraseña no válidos";
+        ViewBag.MensajeErrorLogIn = "Invalid username and/or password";
         return View("LogIn");
     }
 
@@ -97,18 +101,23 @@ public class HomeController : Controller
     }
     
     public IActionResult Carrito(){
+        ViewBag.User = BD.user;
+        if(ViewBag.User != null){
         ViewBag.ListaDetalleCarrito = BD.ObtenerDetalleCarrito();
         ViewBag.Carrito = BD.ObtenerCarrito();
+        }
         return View("Carrito");
     }
      public IActionResult AgregarAlCarrito(int Color, int Talle, int Modelo, float Precio){
         BD.InsertarCarrito(Modelo,Talle,Color,Precio);
+        ViewBag.User = BD.user;
         ViewBag.ListaDetalleCarrito = BD.ObtenerDetalleCarrito();
         ViewBag.Carrito = BD.ObtenerCarrito();
         return View("Carrito");
     }
     public IActionResult EliminarDetalleCarrito(DETALLECARRITO item){
         BD.EliminarDetalleCarrito(item);
+        ViewBag.User = BD.user;
         ViewBag.ListaDetalleCarrito = BD.ObtenerDetalleCarrito();
         ViewBag.Carrito = BD.ObtenerCarrito();
         return View("Carrito");
@@ -116,26 +125,7 @@ public class HomeController : Controller
     // public IActionResult EliminarDelCarrito(){
 
     // } PENDIENTE PARA AJAX
-       public string Promociones(int mes)
-    {
-        string Promociones = "";
-        switch(mes){
-            case 1:
-             Promociones = "10% de descuento en efectivo";
-            return Promociones;
-            case 11:
-             Promociones = "Muñeco de regalo";
-           return Promociones;
-            case 12:
-             Promociones = "15% de descuento por fiestas, en cualquier forma de pago";
-             return Promociones;
-
-
-        }
-          return Promociones;
-       
-    }
-
+     
     public List<TALLE> infoTalles()
     {
         List<TALLE> talles = BD.ObtenerTalles();
@@ -158,6 +148,12 @@ public class HomeController : Controller
     }
     return Promociones;
 }
+public IActionResult Perfil()
+    {
+        ViewBag.User = BD.user;
+        return View("Perfil");
+    }
+
 
 }
 

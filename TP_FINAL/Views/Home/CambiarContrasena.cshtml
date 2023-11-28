@@ -1,7 +1,9 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="container">
+  <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+<div class="container-login">
     <form action='@Url.Action("CambiarContrasena")' method="post" class="CambiarContrasena" onsubmit="return validarFormulario()">
         <h2>Modificar Contraseña</h2>
         <div class="formulario">

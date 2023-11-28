@@ -20,14 +20,8 @@
         <a href='@Url.Action("HomeTienda","Home")'><img style = "width:12%"src="/Images/logo.png" alt=""></a>
       </div>
       <div class="right-section">
-        <div class="search">
-          <input type="text" id="search-input" placeholder="Buscar">
-        </div>
-        <div class="search-icon" id="search-icon">
-          &#128269;
-        </div>
         <div class="profile">
-          <a href="/profile"><img style="width:100%" class = "img-navbar" src="/Images/perfil.png" alt=""></a>
+          <a href='@Url.Action("Perfil","Home")'><img style="width:100%" class = "img-navbar" src="/Images/perfil.png" alt=""></a>
         </div>
         <div class="cart">
           <a href='@Url.Action("Carrito","Home")'><img class = "img-navbar" src="/Images/carrito.png" alt=""></a>
@@ -39,9 +33,48 @@
     @RenderBody()
   </div>
 
-  <footer>
-    &copy; @DateTime.Now.Year - Taller de Programación - TPXX
-  </footer>
+  <footer class="footer" style=" width:100%">
+		<div class="container row" style="max-width:none;padding:20px;margin-left:;padding-right:0;">
+			<div class="footer-col" style="width:25%">
+				<h4>company</h4>
+				<ul style="margin-left: -30px;">
+					<li><a href="#">about us</a></li>
+					<li><a href="#">our services</a></li>
+					<li><a href="#">privacy policy</a></li>
+					<li><a href="#">visit website</a></li>
+				</ul>
+			</div>
+			<div class="footer-col" style="width:25%;">
+				<h4>get help</h4>
+				<ul style="margin-left: -30px;">
+					<li><a href="#">FAQ</a></li>
+					<li><a href="#">shipping</a></li>
+					<li><a href="#">returns</a></li>
+					<li><a href="#">order status</a></li>
+					<li><a href="#">payment options</a></li>
+				</ul>
+			</div>
+			<div class="footer-col" style="width:25%">
+				<h4>online shop</h4>
+				<ul style="margin-left: -30px;">
+					<li><a href="#">download</a></li>
+					<li><a href="#">changelog</a></li>
+					<li><a href="#">github</a></li>
+					<li><a href="#">all version</a></li>
+				</ul>
+			</div>
+			<div class="footer-col" style="width:25%">
+				<h4>follow us</h4>
+				<div class="social-links" style="width:fit-content">
+					<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+					<a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+					<a href="#"><i class="fa-brands fa-instagram"></i></a>
+					<a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

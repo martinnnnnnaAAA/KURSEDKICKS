@@ -1,0 +1,122 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url("/Images/fondo.jpg"); /* Reemplaza 'tu-imagen-de-fondo.jpg' con la ruta o URL de tu imagen */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen en el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+  }
+  
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  h2 {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  footer {
+    margin-top: 700px;
+  }
+  
+  .container-login {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease;
+    min-width: 400px;
+    max-width: 400px;
+    margin: 0 auto;
+    min-height: 20%;
+    margin-top: 5%;
+  }
+  
+  .formulario {
+    margin: 0;
+  }
+  
+  .formulario label {
+    display: block;
+    margin: 0;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8);
+  
+  }
+  
+  .formulario input {
+    width: 95%;
+    padding: 10px;
+    margin: 5px auto;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+  }
+  
+  
+  .error-message {
+    color: red;
+  }
+  
+  .boton,
+  .boton-submit {
+    padding: 12px 24px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0);
+  
+    color: rgba(255, 255, 255);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10%;
+    margin-bottom: 5%;
+  }
+  
+  .boton:hover,
+  .boton-submit:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .boton-b,
+  .boton-b-submit {
+    padding: 12px 24px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .boton:hover,
+  .boton-submit:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

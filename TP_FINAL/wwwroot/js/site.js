@@ -7,7 +7,7 @@
     // Verificar longitud mínima y otros requisitos usando expresiones regulares
     var regex = /[!@#$%^&*()_*{}\[\]:;<>,.?~\\]/;
     if (!(regex.test(Contrasena) && Contrasena.length > 8)) {
-        errorContrasena.textContent = "La Contrasena debe tener al menos 8 caracteres, incluyendo al menos una letra mayúscula, un carácter especial y un número.";
+        errorContrasena.textContent = "The Password must be at least 8 characters, including at least one uppercase letter, one special character, and one number.";
         return false;
     } else {
         errorContrasena.textContent = "";
@@ -15,7 +15,7 @@
 
     // Verificar coincidencia con la confirmación de Contrasena
     if (Contrasena !== confirmarContrasena) {
-        errorConfirmarContrasena.textContent = "Las Contrasenas no coinciden. Por favor, inténtelo de nuevo.";
+        errorConfirmarContrasena.textContent = "Passwords do not match. Please try again.";
         return false;
     } else {
         errorConfirmarContrasena.textContent = "";
@@ -23,28 +23,7 @@
 
     return true;
 }
-// JavaScript para manejar la expansión del campo de búsqueda y el menú desplegable
-const searchInput = document.getElementById("search-input");
-const searchIcon = document.getElementById("search-icon");
-const menuButton = document.getElementById("menu-button");
 
-searchIcon.addEventListener("click", toggleSearch);
-menuButton.addEventListener("click", toggleMenu);
-
-function toggleSearch() {
-    searchInput.classList.toggle("active");
-}
-
-// Manejar la pulsación de la tecla "Enter" en el campo de búsqueda
-searchInput.addEventListener("keyup", function (event) {
-    if (event.key === "Enter") {
-        // Realizar la acción deseada, por ejemplo, redirigir a la página de resultados de búsqueda
-        const query = searchInput.value;
-        window.location.href = `/search?query=${query}`;
-    }
-});
-
-// Agregar cualquier otro comportamiento interactivo necesario
 
 function MostrarPromociones(pMes) {
     $.ajax({

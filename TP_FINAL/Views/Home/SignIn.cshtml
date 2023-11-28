@@ -1,31 +1,32 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class = "container">
+  <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+<div class = "container-login" style="margin-top:0%">
 <form action='@Url.Action("VerificarSignIn", "Home")' method="post" class="SignIn" onsubmit="return validarFormulario()">
-    <h2>Registrarse</h2>
+    <h2>Sign In</h2>
     <div class="formulario">
-        <label for="UserName">Nombre de Usuario</label>
+        <label for="UserName">UserName</label>
         <input type="text" name="UserName" required>
 
-        <label for="Nombre">Nombre</label>
+        <label for="Nombre">Name</label>
         <input type="text" name="Nombre" required>
 
         <label for="Email">Email</label>
         <input type="email" name="Email" required>
 
-        <label for="Telefono">Teléfono</label>
+        <label for="Telefono">Phone Number</label>
         <input type="text" name="Telefono" required>
 
-        <label for="Contrasena">Contraseña</label>
+        <label for="Contrasena">Password</label>
         <input type="password" name="Contrasena" required>
         <p id="errorContrasena" class="error-message"></p>
 
-        <label for="Contrasena2">Confirmar Contraseña</label>
+        <label for="Contrasena2">Confirm Password</label>
         <input type="password" name="Contrasena2" required>
         <p id="errorConfirmarContrasena" class="error-message"></p>
     </div>
-    <button type="submit" class="boton-submit">Registrarse</button>
+    <button type="submit" class="boton-submit">Sign In</button>
     <p class = "error-message">@ViewBag.MensajeError</p>
 </form>
 </div>

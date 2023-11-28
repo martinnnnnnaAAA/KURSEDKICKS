@@ -1,95 +1,188 @@
-@{
-    ViewData["Title"] = "Zapatilla";
-}
+<div class="zapatilla-container">
+    <div class="zapatilla-img">
+        <img src="/Images/@ViewBag.Zapatilla.Foto" alt="Zapatilla">
+    </div>
 
-<img src="/Images/@ViewBag.Zapatilla.Foto">
-<h1>@ViewBag.Zapatilla.Nombre</h1>
-<h2>@ViewBag.Zapatilla.Precio</h2>
 
-<form action='@Url.Action("AgregarAlCarrito")' method="post" class="formulario-zapatillas">
-    <div class="formulario-colores">
-        <label>Colors:</label>
-        <div class="color-options">
-            @foreach (COLOR item in ViewBag.Colores)
+    <div class="zapatilla-info">
+        <h1>@ViewBag.Zapatilla.Nombre</h1>
+        <h2>USD $@ViewBag.Zapatilla.Precio</h2>
+
+
+        <form action='@Url.Action("AgregarAlCarrito")' method="post" class="formulario-zapatillas">
+            <div class="formulario-colores">
+                <label>Colors:</label>
+                <div class="color-options">
+                    @foreach (COLOR item in ViewBag.Colores)
+                    {
+                        <input type="radio" name="Color" value="@item.IdColor" id="color_@item.IdColor" required>
+                        <label for="color_@item.IdColor">@item.Nombre</label>
+                    }
+                </div>
+            </div>
+            <div class="formulario-talles">
+                <label>Sizes:</label>
+                <div class="talle-options">
+                    @foreach (TALLE item in ViewBag.Talles)
+                    {
+                        <input type="radio" name="Talle" value="@item.IdTalle" id="talle_@item.IdTalle" required>
+                        <label for="talle_@item.IdTalle">@item.Numero</label>
+                    }
+                </div>
+            </div>
+            <input type="hidden" name="Modelo" value="@ViewBag.Zapatilla.IdModelo">
+            <input type="hidden" name="Precio" value="@ViewBag.Zapatilla.Precio">
+
+
+            @if (ViewBag.User != null)
             {
-                <input type="radio" name="Color" value="@item.IdColor" required> @item.Nombre
+                <div class="formulario-botones">
+                    <button type="submit" class="btn btn-primary">Add to cart</button>
+                </div>
             }
+        </form>
+
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal"
+            onclick="MostrarTalles()">Size Chart</button>
+
+
+        <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalTitulo" style="color: black;"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center" id="ModalBody">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">US</th>
+                                    <th scope="col">Foot Length</th>
+                                </tr>
+                            </thead>
+                            <tbody id="DatosTalles">
+                                <!-- Contenido de la tabla -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="formulario-talles">
-        <label>Sizes:</label>
-        <div class="color-options">
-            @foreach (TALLE item in ViewBag.Talles)
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalPromociones"
+            onclick="MostrarPromociones(@ViewBag.Mes)">Promotions!</button>
+
+
+
+
+        <div class="modal fade" id="ModalPromociones" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalTituloPromo" style="color: black;"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="ModalBody">
+                        <div id="InfoPromo"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+            @if(ViewBag.User==null)
             {
-                <input type="radio" name="Talle" value="@item.IdTalle" required> @item.Numero
+                <h3>Before purchasing this shoe, you need to Log In! </h3>
             }
-        </div>
-    </div>
-    <input type="hidden" name="Modelo" value="@ViewBag.Zapatilla.IdModelo">
-    <input type="hidden" name="Precio" value="@ViewBag.Zapatilla.Precio">
-
-
-@if(ViewBag.User != null){
-
-
-    <div class="formulario-botones">
-        <button type="submit" class="boton-b">Add to cart</button>
-    </div>
-}
-else{
-<h2>Before purchasing this shoe, you need to log in </h2>
-}
-</form>
-
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal"
-    onclick="MostrarTalles()">Size Chart</button>
-
-<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="ModalTitulo" style="color: black;"></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center" id="ModalBody">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">US</th>
-                            <th scope="col">Foot Length</th>
-                        </tr>
-                    </thead>
-                    <tbody id="DatosTalles">
-                        <!-- Contenido de la tabla -->
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
     </div>
 </div>
-@* <!– Modal Promociones –> *@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalPromociones" onclick="MostrarPromociones(@ViewBag.Mes)">Promotions!</button>
+
+<style>
+    .zapatilla-container {
+        display: flex;
+        align-items: flex-start;
+    }
 
 
-<div class="modal fade" id="ModalPromociones" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="ModalTituloPromo" style="color: black;"></h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="ModalBody">
-                <div id="InfoPromo"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
+    .zapatilla-img {
+        margin-right: 20px;
+    }
 
 
+    .formulario-zapatillas {
+        display: flex;
+        flex-direction: column;
+    }
 
+
+    .formulario-colores,
+    .formulario-talles,
+    .formulario-botones {
+        margin-top: 10px;
+    }
+
+
+    .btn-primary {
+        margin-top: 10px;
+        background-color: white;
+        border-color: black;
+        color: black;
+    }
+
+
+    .btn-primary:hover {
+        background-color: black;
+        border-color: black;
+        color: white;
+    }
+
+
+    h2 {
+        margin-top: 10px;
+        color: black;
+    }
+
+    @*HACERESTO*@.-bs-btn-active-bg {
+        background-color: red;
+    }
+
+    .color-options label,
+    .talle-options label {
+        cursor: pointer;
+        display: inline-block;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+
+    .color-options input,
+    .talle-options input {
+        display: none;
+    }
+
+
+    .color-options input:checked+label,
+    .talle-options input:checked+label {
+        background-color: rgb(0, 0, 0);
+        border-color: black;
+        color: #fff;
+    }
+
+    .label:hover {
+        background-color: black;
+        border-color: black;
+        color: red;
+    }
+    .footer{
+        margin-top: 300px;
+    }
+</style>
