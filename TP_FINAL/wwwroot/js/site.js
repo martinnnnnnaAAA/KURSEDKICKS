@@ -40,12 +40,13 @@ function MostrarPromociones(pMes) {
         success: function (response) {
             console.log(response);
             var promociones = response;
-            $("#ModalTituloPromo").html("Promociones este mes");
+            $("#ModalTituloPromo").html("Promotions of the Month");
             $("#InfoPromo").html(promociones);
         }
        
     });
 }
+
 function MostrarExito() {
     $.ajax(
         {
@@ -55,14 +56,12 @@ function MostrarExito() {
             success: function (response) {
                 console.log(response);
                 var exito = response;
+                    $("#ModalFotoExito").attr("src", "/Images/FotoExito.png");
                     $("#ModalTituloExit").html("Succesful checkout");
-                    $("#InfoExit").html(exito);
+                    $("#InfoExit").html(exito); 
                     }
                 });
             }
-
-
-
 
 function MostrarTalles() {
     $.ajax(
@@ -72,12 +71,12 @@ function MostrarTalles() {
             url: '/Home/infoTalles',
             success:
                 function (response) {
-                    $("#ModalTitulo").html("Tabla de Talles");
+                    $("#ModalTitulo").html("Size Chart");
                     let htmlfila="";
                     for(let item of response) {
                         htmlfila += "<tr>";
                         htmlfila += "<td>" +  item.numero +"</td>";
-                        htmlfila += "<td>" +  item.centimetros +"</td>";
+                        htmlfila += "<td>" +  item.centimetros + "cm" +"</td>";
                         htmlfila += "</tr>";
                     }
                     $("#DatosTalles").html(htmlfila);

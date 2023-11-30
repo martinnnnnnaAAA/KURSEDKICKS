@@ -1,5 +1,9 @@
+<header>
 <h1>Shopping cart</h1>
+</header>
 @if(ViewBag.User != null){
+    @if(ViewBag.ListaDetalleCarrito.Count > 0){
+
 <section>
         <div class='container'>
             <div class='window'>
@@ -30,7 +34,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div class='price'>$@item.Subtotal</div>
+                                            <div class='price'> <p style="color:green">$@item.Subtotal USD</p></div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -46,8 +50,8 @@
                                 TOTAL
                             </span>
                             <span style='float:right; text-align:right;'>
-                                <div class='thin dense'>FREE</div>
-                                $@ViewBag.Carrito.Total
+                                <div class='thin dense'>FREE!</div>
+                                <p style="color:green">$@ViewBag.Carrito.Total USD </p>
                             </span>
                         </div>
                     </div>
@@ -56,7 +60,7 @@
 
 
                 @* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// *@
-            <div class='window2'>
+<div class='window2'>
                 <div class='credit-info'>
                     <div class='credit-info-content'>
                         <table class='half-input-table'>
@@ -105,6 +109,65 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="ModalExito" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalTituloExit" style="color: black;"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                        <img class="modal-foto" id="ModalFotoExito">
+                    <div class="modal-body" id="ModalBody ">
+                        <div id="InfoExit" style="color: black;font-size:24px;"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href='@Url.Action("HomeTienda","Home")'><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+</section>
+    }
+    else{
+        <div style="display:flex;flex-direction:column;align-items:center;min-height: 700px;">
+    <h2>You don't have any items in your cart.</h2>
+        <a href='@Url.Action("HomeTienda", "Home")'>
+        <button type="button" class="logout-link"> Start Shopping</button>
+    </a>
+    </div>
+    }
+}
+else{
+    <div style="min-height: 700px">
+    <h2> log in to continue purchasing</h2>
+    </div>
+}
+
         <div class="modal fade" id="ModalExito" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -122,26 +185,14 @@
             </div>
         </div>
 
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-</section>
-}
-else{
-    <h2> log in to continue purchasing</h2>
-}
 <style>
-    body,
-    html {
-        height: 100%;
-        margin: 0;
-        font-family: lato;
-    }
-
+    header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 1%;
+}
 
     h2 {
         margin-bottom: 0px;
@@ -486,6 +537,25 @@ else{
 
     .pay-btn {
         border-radius: 0px;
+    }
+
+    .logout-link {
+        margin-left: auto;
+        display: inline-block;
+        text-align: center;
+        margin-top: 5%;
+        text-decoration: none;
+        color: #fff;
+        background-color: rgb(206, 0, 0);
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+
+    .logout-link:hover {
+        text-decoration: none;
+        color: black;
     }
 </style>
 

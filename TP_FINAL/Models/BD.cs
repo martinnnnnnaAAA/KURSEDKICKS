@@ -198,6 +198,19 @@ public static class BD
             return Carrito;
         }
     }
+    public static void EliminarCarrito(){
+        USUARIO user = BD.user;
+        List<DETALLECARRITO> detalle = BD.ObtenerDetalleCarrito();
+        foreach(DETALLECARRITO det in detalle)
+        {
+            BD.EliminarDetalleCarrito(det);
+        }
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_EliminarCarrito";
+            db.Execute(SP, new { IdUsuario = user.IdUsuario }, commandType: CommandType.StoredProcedure);
+        }
+    }
 }
 
 

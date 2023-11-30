@@ -135,23 +135,24 @@ public class HomeController : Controller
     
     public string Promociones(int mes)
 {
-    string Promociones = "No hay promos";
+    string Promociones = "There are no promos";
     switch(mes){
         case 1:
-            Promociones = "En el mes de enero hay llavero , de regalo";
+            Promociones = "In the month of January there is a keychain, as a gift";
             break;
         case 11:
-            Promociones = "En el mes noviembre hay muñeco de regalo con la compra de una zapatilla";
+            Promociones = "In the month of November there is a gift doll with the purchase of a shoe";
             break;
         case 12:
-            Promociones = "Cordones fluor de regalo por navidades";
+            Promociones = "Fluorescent gift cords for Christmas";
             break;
     }
     return Promociones;
 }
     public string Exito()
 {
-    string exito = "Gracias por tu compra en Kursed Kicks";
+    string exito = "Thank you for your purchase at Kursed Kicks!";
+    BD.EliminarCarrito();
     return exito;
 }
 
