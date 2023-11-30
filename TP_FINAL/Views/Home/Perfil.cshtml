@@ -1,3 +1,64 @@
+@if (ViewBag.User != null)
+{
+    <div class="profile-container">
+        <div class="profile-heading">
+            <h2>User Information</h2>
+        </div>
+
+
+        <ul class="profile-details">
+            <li>
+                <label>
+                    <h5>User Name:</h5>
+                </label>
+                <span>
+                    <h6>@ViewBag.User.UserName</h6>
+                </span>
+            </li>
+            <li>
+                <label>
+                    <h5>Name:</h5>
+                </label>
+                <span>
+                    <h6>@ViewBag.User.Nombre</h6>
+                </span>
+            </li>
+            <li>
+                <label>
+                    <h5>Email:</h5>
+                </label>
+                <span>
+                    <h6>@ViewBag.User.Email</h6>
+                </span>
+            </li>
+            <li>
+                <label>
+                    <h5>Phone Number:</h5>
+                </label>
+                <span>
+                    <h6>@ViewBag.User.Telefono</h6>
+                </span>
+            </li>
+        </ul>
+
+        <a href='@Url.Action("LogOut","Home")' class="logout-link"> Log Out</a>
+    </div>
+}
+else
+{
+    <div class="profile-container" style="height:300px">
+        <div class="profile-heading">
+            <h2 style="margin-top: 100px;">Log In to Continue Purchasing!</h2>
+        </div>
+        <a href='@Url.Action("LogIn","Home")' class="logout-link" style="margin-top:10%"> Log In!</a>
+    </div>
+    <style>
+        .footer {
+            margin-top: 400px;
+        }
+    </style>
+}
+
 <style>
     body {
         background-color: #302E2E;
@@ -91,69 +152,6 @@
         flex-direction: column;
     }
 </style>
-
-<body>
-    @if (ViewBag.User != null)
-    {
-        <div class="profile-container">
-            <div class="profile-heading">
-                <h2>User Information</h2>
-            </div>
-
-
-            <ul class="profile-details">
-                <li>
-                    <label>
-                        <h5>User Name:</h5>
-                    </label>
-                    <span>
-                        <h6>@ViewBag.User.UserName</h6>
-                    </span>
-                </li>
-                <li>
-                    <label>
-                        <h5>Name:</h5>
-                    </label>
-                    <span>
-                        <h6>@ViewBag.User.Nombre</h6>
-                    </span>
-                </li>
-                <li>
-                    <label>
-                        <h5>Email:</h5>
-                    </label>
-                    <span>
-                        <h6>@ViewBag.User.Email</h6>
-                    </span>
-                </li>
-                <li>
-                    <label>
-                        <h5>Phone Number:</h5>
-                    </label>
-                    <span>
-                        <h6>@ViewBag.User.Telefono<h6>
-                    </span>
-                </li>
-            </ul>
-
-            <a href='@Url.Action("LogOut","Home")' class="logout-link"> Log Out</a>
-        </div>
-    }
-    else
-    {
-        <div class="profile-container" style="height:300px">
-            <div class="profile-heading">
-                <h2 style="margin-top: 100px;">Log In to Continue Purchasing!</h2>
-            </div>
-            <a href='@Url.Action("LogIn","Home")' class="logout-link" style="margin-top:10%"> Log In!</a>
-        </div>
-        <style>
-            .footer {
-                margin-top: 400px;
-            }
-        </style>
-    }
-</body>
 
 
 

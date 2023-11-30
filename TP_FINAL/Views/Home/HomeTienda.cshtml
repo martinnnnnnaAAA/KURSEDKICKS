@@ -19,6 +19,7 @@
       @foreach (MODELO item in ViewBag.Modelo)
       {
         <div class="col-md-3 col-12">
+          <div class ="container-card">
           <a href='@Url.Action("Modelo", "Home", item)'>
             <div class="card">
               <img src="/Images/@item.Foto" class="card-img-top" alt="...">
@@ -30,6 +31,7 @@
               </ul>
             </div>
           </a>
+          </div>
         </div>
       }
 
@@ -79,6 +81,13 @@
 </section>
 
 <style>
+
+  .container-card{
+    transition: 0.5s;
+  }
+  .container-card:hover{
+   transform: scale(1.2); 
+  }
   body {
     background-image: url("/Images/lilnasbyn.jpg");
     /* Reemplaza 'tu-imagen-de-fondo.jpg' con la ruta o URL de tu imagen */
@@ -131,6 +140,7 @@
   .btn:hover {
     background-color: #ffffff;
     border: 1px solid #666666;
+    
   }
 
   .btn:hover .btn-icon {

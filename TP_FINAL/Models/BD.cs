@@ -3,7 +3,7 @@ using System.Data;
 using Dapper;
 using System.Collections.Generic;
 
-namespace TP_PREGUNTADORT;
+namespace TP_FINAL.Models;
 
 public static class BD
 {
@@ -26,7 +26,7 @@ public static class BD
                 VerificarUserName = DB.QueryFirstOrDefault<USUARIO>(SQL, new { @pUsername = Username, @pEmail = Email });
                 if (VerificarUserName == null)
                 {
-                    SQL = "INSERT INTO Usuario(Username,Contrasena,Nombre,Email,Telefono) VALUES(@pUsername,@pContrasena,@pNombre,@pEmail,@pTelefono)";
+                    SQL = "INSERT INTO Usuario(Username,Contrasena,Nombre,Email,Telefono, Administrador) VALUES(@pUsername,@pContrasena,@pNombre,@pEmail,@pTelefono, 0)";
                     DB.Execute(SQL, new { pUsername = Username, pContrasena = Contrasena, pNombre = Nombre, pEmail = Email, pTelefono = Telefono });
                 }
                 else

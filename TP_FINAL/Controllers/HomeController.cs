@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TP_PREGUNTADORT;
+using TP_FINAL.Models;
 
 namespace TP_FINAL.Controllers;
 
@@ -161,6 +161,28 @@ public IActionResult Perfil()
         return View("Perfil");
     }
 
+
+public IActionResult AboutUs(){
+    return View();
+}
+public IActionResult OurServices(){
+    return View();
+}
+public IActionResult PrivacyPolicy(){
+    return View();
+}
+public IActionResult FAQ(){
+    return View();
+}
+public IActionResult Shipping(){
+    return View();
+}
+public IActionResult Returns (){
+    return View();
+}
+public IActionResult PaymentOptions(){
+    return View();
+}
 
 }
 
