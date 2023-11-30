@@ -5,18 +5,18 @@
 
 <div class="container-login">
     <form action='@Url.Action("CambiarContrasena")' method="post" class="CambiarContrasena" onsubmit="return validarFormulario()">
-        <h2>Modificar Contraseña</h2>
+        <h2>Change Password</h2>
         <div class="formulario">
-            <label for="Contrasena">Nueva Contraseña</label>
+            <label for="Contrasena">New Password</label>
             <input type="password" name="nuevaContrasena" required>
             <p id="errorContrasena" class="error-message"></p>
 
-            <label for="Contrasena2">Confirmar Contraseña</label>
+            <label for="Contrasena2">Confirm New Password</label>
             <input type="password" name="Contrasena2" required>
             <p id="errorConfirmarContrasena" class="error-message"></p>
 
             <input type="hidden" name="UserName" value="@ViewBag.user.UserName">
         </div>
-        <button type="submit" class="boton-submit">Cambiar Contraseña</button>
+        <button type="submit" class="boton-submit">Change Password</button>
     </form>
 </div>
