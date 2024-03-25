@@ -24,6 +24,11 @@
 			@if(BD.user == null){
 				<a href='@Url.Action("SignIn","Home")' class="logout-link" style=""> Sign Up!</a>
 			}
+			else{
+			@if(BD.user.Administrador == true){
+				<a href='@Url.Action("AgregarZapatilla","Home")' class="logout-link" style=""> Agregar Zapatilla</a>
+			}
+			}
 			<div class="profile">
 				<a href='@Url.Action("Perfil","Home")'><img style="width:100%" class="img-navbar"
 						src="/Images/perfil.png" alt=""></a>

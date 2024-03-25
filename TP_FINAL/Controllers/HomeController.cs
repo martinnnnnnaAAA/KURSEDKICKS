@@ -1,6 +1,10 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TP_FINAL.Models;
+using Microsoft.AspNetCore.Hosting;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace TP_FINAL.Controllers;
 
@@ -162,6 +166,12 @@ public IActionResult Perfil()
         return View("Perfil");
     }
 
+public IActionResult AgregarZapatilla(){
+    if(BD.user.Administrador == false || BD.user == null){
+        return View("HomeTienda");
+    }
+    return View();
+}
 
 public IActionResult AboutUs(){
     return View();
@@ -185,5 +195,7 @@ public IActionResult PaymentOptions(){
     return View();
 }
 
-}
 
+
+
+}
