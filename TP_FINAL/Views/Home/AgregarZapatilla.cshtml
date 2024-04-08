@@ -1,0 +1,231 @@
+<!-- FALTA: QUE EL FORMULARIO DE TALLES COLOR ETC SEA DE OPCION MULTIPLE, MISMO FALTA AGREGAR LA OPCION DE SELECCIONAR LOS GENEROS DE LA ZAPATOILLA Y LA MARCA, FALTA DAR FORMATO Y QUE LA SELECCION MULTIPLE NO TENGA OCMO ESTILO UN DESPLAZADOR SINO MUCHOS BOITONES DISTRIBUIDPOS -->
+
+
+<form action='@Url.Action("FALTA")' method="post"> <!-- falta indicar accion -->
+<div class="zapatilla-container">
+    <div class="zapatilla-img" style="display:flex;flex-direction:column;">
+        <img style ="max-width: 600px;" src="/Images/NoImage.jpg" alt="Zapatilla">
+        <input type="text" name="zapatilla-foto"  style="min-width: 600px;">
+    </div>
+
+    <div class="zapatilla-info">
+        <input type="text" id="zapatilla-nombre" placeholder="Nombre">
+        <input type="text" id="zapatilla-precio" placeholder="Precio USD">
+        <textarea id="zapatilla-descripcion" style="max-width: 700px;" placeholder="Descripción"></textarea>
+
+<div class="formulario-colores">
+    <label for="colores">Colores:</label>
+    <select name="Colores" id="colores" multiple required>
+        @foreach (var color in ViewBag.Colores)
+        {
+            <option value="@color.IdColor">@color.Nombre</option>
+        }
+    </select>
+</div>
+
+<div class="formulario-talles">
+    <label for="talles">Talles:</label>
+    <select name="Talles" id="talles" multiple required>
+        @foreach (var talle in ViewBag.Talles)
+        {
+            <option value="@talle.IdTalle">@talle.Numero</option>
+        }
+    </select>
+</div>
+
+            <input type="hidden" name="Modelo" value="">
+            <input type="hidden" name="Precio" value="">
+
+            <div style="margin-bottom:10%;">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal" onclick="MostrarTalles()">Size Chart</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalPromociones" onclick="MostrarPromociones(@ViewBag.Mes)">Promotions!</button>
+            </div>
+
+            <div class="formulario-botones">
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 10%;">Add to cart</button>
+           
+            </div>
+        </form>
+
+        <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <!-- Modal contenido -->
+        </div>
+
+        <div class="modal fade" id="ModalPromociones" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <!-- Modal contenido -->
+        </div>
+    </div>
+</div>
+
+    <style>
+        body {
+            background-image: url("/Images/lilnasbyn.jpg");
+            /* Reemplaza 'tu-imagen-de-fondo.jpg' con la ruta o URL de tu imagen */
+            background-size: cover;
+            /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+            background-position: center;
+            /* Centra la imagen en el fondo */
+            background-repeat: no-repeat;
+            /* Evita que la imagen se repita */
+            font-family: 'Fjalla One', sans-serif;
+        }
+
+        .zapatilla-container {
+            width: fit-content;
+            justify-content: center;
+            margin: auto;
+            margin-top: 5%;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            box-shadow: 10px 10px 150px rgba(0, 0, 0, 1);
+        }
+
+        .zapatilla-info {
+            max-width: 400px;
+        }
+
+        .zapatilla-img {
+            margin-right: 20px;
+        }
+
+        .formulario-zapatillas {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .formulario-colores,
+        .formulario-talles,
+        .formulario-botones {
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            margin-top: 10px;
+            background-color: black;
+            border-color: black;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: white;
+            border-color: black;
+            color: black;
+        }
+
+        h2 {
+            margin-top: 10px;
+            color: black;
+        }
+
+        .color-options label,
+        .talle-options label {
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        label:hover {
+            background-color: black;
+            border-color: black;
+            color: white;
+        }
+
+        .color-options input,
+        .talle-options input {
+            display: none;
+        }
+
+        .color-options input:checked+label,
+        .talle-options input:checked+label {
+            background-color: rgb(0, 0, 0);
+            border-color: black;
+            color: #fff;
+        }
+
+        .footer {
+            margin-top: 100px;
+            background-color: #151515;
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .footer-col {
+            width: 25%;
+            padding: 0 15px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            color: #FFF;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-col h4::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            background-color: #E91E63;
+            width: 50px;
+            height: 2px;
+        }
+
+        .footer-col ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #DDD;
+            display: block;
+            font-size: 1rem;
+            font-weight: 300;
+            text-transform: capitalize;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #FFF;
+            padding-left: 7px;
+        }
+
+        .footer-col .social-links a {
+            color: #FFF;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            text-align: center;
+            margin: 0 10px 10px 0;
+            line-height: 40px;
+            transition: all 0.5s ease;
+        }
+
+        .footer-col .social-links a:hover {
+            color: #151515;
+            background-color: #FFF;
+        }
+
+    </style>
