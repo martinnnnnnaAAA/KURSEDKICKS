@@ -1,0 +1,21 @@
+
+
+
+
+ @foreach (MODELO item in ViewBag.ListaFavorito)
+      {
+        <div class="col-md-3 col-12">
+          <div class ="container-card">
+          <a href='@Url.Action("Modelo", "Home", item)'>
+            <div class="card">
+              <img src="/Images/@item.Foto" class="card-img-top" alt="...">
+              <div class="card-body">
+              </div>
+              <ul class="list-group list-group-flush">
+                <p class="list-group-item" style="height:30px;">USD $@item.Precio</p>
+              </ul>
+            </div>
+          </a>
+          </div>
+        </div>
+      }

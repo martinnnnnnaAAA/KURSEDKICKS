@@ -211,6 +211,73 @@ public static class BD
             db.Execute(SP, new { IdUsuario = user.IdUsuario }, commandType: CommandType.StoredProcedure);
         }
     }
+    //Favorito
+    public static void InsertarFavorito(int Modelo)
+    {
+        USUARIO user = BD.user;
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_InsertarAlDetalleFavorito";
+            db.Execute(SP, new { IdUsuario = user.IdUsuario, FkModelo = Modelo}, commandType: CommandType.StoredProcedure);
+        }
+    }
+    
+        public static void EliminarFavorito(int FkModelo)
+    {
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_EliminarFavorito";
+            db.Execute(SP, new { FkModelo = FkModelo }, commandType: CommandType.StoredProcedure);
+        }
+    }
+    public static FAVORITO ObtenerFavorito()
+    {
+        USUARIO user = BD.user;
+        int IdUsuario = user.IdUsuario;
+        FAVORITO Favorito = null;
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_TraerFavorito";
+            Favorito = db.QueryFirstOrDefault<FAVORITO>(SP, new { IdUsuario = IdUsuario }, commandType: CommandType.StoredProcedure);
+            return Favorito;
+        }
+    }
+        public static List<MODELO> ObtenerDetalleFavorito()
+    {
+        USUARIO user = BD.user;
+        int IdUsuario = user.IdUsuario;
+        List<MODELO> ListaFavorito = null;
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_TraerDetalleFavorito";
+            ListaFavorito = db.Query<MODELO>(SP, new { IdUsuario = IdUsuario }, commandType: CommandType.StoredProcedure).ToList();
+            return ListaFavorito;
+        }
+    }
+        public static bool IsFavorito(int Modelo)
+    {
+        USUARIO user = BD.user;
+        FAVORITO existe = null;
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_IsFavorito";
+            existe = db.QueryFirstOrDefault<FAVORITO>(SP, new { FkUsuario = user.IdUsuario, FkModelo = Modelo}, commandType: CommandType.StoredProcedure);
+            if(existe == null){
+                return false;
+            }
+            return true;
+        }
+    }
+            public static void AgregarABD(string Nombre, float Precio, string Descripcion, int FkGenero, int FkMarca, int Stock, string Foto)
+    {
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_AgregarABD";
+            db.Execute(SP, new { Nombre = Nombre, Precio = Precio, Descripcion = Descripcion, FkGenero = FkGenero, FkMarca = FkMarca, Stock = Stock }, commandType: CommandType.StoredProcedure);
+        }
+    }
+
+
 }
 
 

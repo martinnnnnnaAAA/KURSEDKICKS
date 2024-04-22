@@ -97,6 +97,7 @@ public class HomeController : Controller
     }
     public IActionResult Modelo(MODELO item)
     {
+        ViewBag.IsFavorito = BD.IsFavorito(item.IdModelo);
         ViewBag.User = BD.user;
         ViewBag.Zapatilla = item;
         ViewBag.Colores = BD.ObtenerColores();
@@ -127,9 +128,30 @@ public class HomeController : Controller
         ViewBag.Carrito = BD.ObtenerCarrito();
         return View("Carrito");
     }
-    // public IActionResult EliminarDelCarrito(){
-
-    // } PENDIENTE PARA AJAX
+        public IActionResult Favorito(){
+        ViewBag.User = BD.user;
+        if(ViewBag.User != null){
+        ViewBag.Favorito = BD.ObtenerFavorito();
+        ViewBag.ListaFavorito = BD.ObtenerDetalleFavorito();
+        }
+        return View("Favorito");
+    }
+        public IActionResult AgregarAlFavorito(MODELO item){
+        BD.InsertarFavorito(item.IdModelo);
+        ViewBag.User = BD.user;
+        ViewBag.Favorito = BD.ObtenerFavorito();
+        ViewBag.ListaFavorito = BD.ObtenerDetalleFavorito();
+        ViewBag.Zapatilla = item;
+        return View("Modelo");
+    }
+    public IActionResult EliminarFavorito(MODELO item){
+        BD.EliminarFavorito(item.IdModelo);
+        ViewBag.Zapatilla = item;
+        ViewBag.User = BD.user;
+        ViewBag.ListaDetalleFavorito = BD.ObtenerDetalleFavorito();
+        ViewBag.Favorito = BD.ObtenerFavorito();
+        return View("Modelo");
+    }
      
     public List<TALLE> infoTalles()
     {
@@ -170,16 +192,18 @@ public IActionResult AgregarZapatilla(){
     if(BD.user.Administrador == false || BD.user == null){
         return View("HomeTienda");
     }
-<<<<<<< HEAD
         ViewBag.Talles = BD.ObtenerTalles();
         ViewBag.Generos = BD.ObtenerGeneros();
         ViewBag.Marcas = BD.ObtenerMarcas();
         ViewBag.Colores = BD.ObtenerColores();
 
-=======
->>>>>>> 7b2a11d6673cb47be05b04cbe7a61ff7d1127c98
     return View();
 }
+public IActionResult AgregarABD(string Nombre, float Precio, string Descripcion, int Genero, int Marca, int Stock, string Foto){
+    BD.AgregarABD(Nombre, Precio, Descripcion, Genero, Marca, Stock, Foto);
+    return RedirectToAction("HomeTienda");
+}
+
 
 public IActionResult AboutUs(){
     return View();

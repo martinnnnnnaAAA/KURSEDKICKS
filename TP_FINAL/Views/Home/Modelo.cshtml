@@ -10,7 +10,13 @@
     </div>
 
     <div class="zapatilla-info">
+    <div style ="display:flex;flex-direction:row;"> 
         <h1 style="margin-top:10%;">@ViewBag.Zapatilla.Nombre</h1>
+        @if(ViewBag.IsFavorito){
+        <a href='@Url.Action("EliminarFavorito", "Home", new {Modelo = @ViewBag.Zapatilla })'><img src ="/Images/foto-favorito.png" style = "maxwidth:20px"></a>
+        }
+        <a href='@Url.Action("AgregarAlFavorito", "Home", new {Modelo = @ViewBag.Zapatilla })'><img src ="/Images/foto-nofavorito.png" style = "maxwidth:20px"></a>
+    </div>
         <h2>$@ViewBag.Zapatilla.Precio USD</h2>
         <p style="max-width: 700px;margin-top:5%; color:grey">@ViewBag.Zapatilla.Descripcion</p>
 
