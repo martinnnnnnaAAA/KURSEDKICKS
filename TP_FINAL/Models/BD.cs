@@ -211,6 +211,14 @@ public static class BD
             db.Execute(SP, new { IdUsuario = user.IdUsuario }, commandType: CommandType.StoredProcedure);
         }
     }
+        public static void AgregarABD(string Nombre, float Precio, string Descripcion, int FkGenero, int FkMarca, int Stock)
+    {
+        using (SqlConnection db = new SqlConnection(_connectionString))
+        {
+            string SP = "SP_AgregarABD";
+            db.Execute(SP, new { Nombre = Nombre, Precio = Precio, Descripcion = Descripcion, FkGenero = FkGenero, FkMarca = FkMarca, Stock = Stock }, commandType: CommandType.StoredProcedure);
+        }
+    }
 }
 
 
