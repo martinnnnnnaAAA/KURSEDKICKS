@@ -1,12 +1,10 @@
-<!-- FALTA: QUE EL FORMULARIO DE TALLES COLOR ETC SEA DE OPCION MULTIPLE, MISMO FALTA AGREGAR LA OPCION DE SELECCIONAR LOS GENEROS DE LA ZAPATOILLA Y LA MARCA, FALTA DAR FORMATO Y QUE LA SELECCION MULTIPLE NO TENGA OCMO ESTILO UN DESPLAZADOR SINO MUCHOS BOITONES DISTRIBUIDPOS -->
-
-
 <form action='@Url.Action("AgregarABD")' method="post"> <!-- falta indicar accion -->
 <div class="zapatilla-container">
     <div class="zapatilla-img" style="display:flex;flex-direction:column;">
         <img style ="max-width: 600px;" src="/Images/NoImage.jpg" alt="Zapatilla">
-        <input type="text" name="Foto"  style="min-width: 600px;">
+        <input type="text" name="Foto"  style="min-width: 600px;" placeholder = "Upload image url">
     </div>
+
 
     <div class="zapatilla-info">
         <input type="text" name="Nombre" placeholder="Name">
@@ -36,7 +34,6 @@
             <input type="number" name="Stock">
         </div>
 
-
             <div class="formulario-botones">
                 <button type="submit" class="btn btn-primary" style="margin-bottom: 10%;">Upload</button>
            
@@ -44,6 +41,7 @@
         </form>
     </div>
 </div>
+
 
     <style>
         body {
@@ -58,6 +56,7 @@
             font-family: 'Fjalla One', sans-serif;
         }
 
+
         .zapatilla-container {
             width: fit-content;
             justify-content: center;
@@ -69,24 +68,29 @@
             box-shadow: 10px 10px 150px rgba(0, 0, 0, 1);
         }
 
+
         .zapatilla-info {
             max-width: 400px;
         }
 
+
         .zapatilla-img {
             margin-right: 20px;
         }
+
 
         .formulario-zapatillas {
             display: flex;
             flex-direction: column;
         }
 
+
         .formulario-colores,
         .formulario-talles,
         .formulario-botones {
             margin-top: 10px;
         }
+
 
         .btn-primary {
             margin-top: 10px;
@@ -95,16 +99,19 @@
             color: white;
         }
 
+
         .btn-primary:hover {
             background-color: white;
             border-color: black;
             color: black;
         }
 
+
         h2 {
             margin-top: 10px;
             color: black;
         }
+
 
         .color-options label,
         .talle-options label {
@@ -117,16 +124,19 @@
             margin-bottom: 5px;
         }
 
+
         label:hover {
             background-color: black;
             border-color: black;
             color: white;
         }
 
+
         .color-options input,
         .talle-options input {
             display: none;
         }
+
 
         .color-options input:checked+label,
         .talle-options input:checked+label {
@@ -135,30 +145,36 @@
             color: #fff;
         }
 
+
         .footer {
             margin-top: 100px;
             background-color: #151515;
             padding: 80px 0;
         }
 
+
         .container {
             max-width: 1170px;
             margin: auto;
         }
+
 
         .row {
             display: flex;
             flex-wrap: wrap;
         }
 
+
         ul {
             list-style: none;
         }
+
 
         .footer-col {
             width: 25%;
             padding: 0 15px;
         }
+
 
         .footer-col h4 {
             font-size: 18px;
@@ -168,6 +184,7 @@
             font-weight: 500;
             position: relative;
         }
+
 
         .footer-col h4::before {
             content: "";
@@ -179,9 +196,11 @@
             height: 2px;
         }
 
+
         .footer-col ul li:not(:last-child) {
             margin-bottom: 10px;
         }
+
 
         .footer-col ul li a {
             color: #DDD;
@@ -193,10 +212,12 @@
             transition: all 0.3s ease;
         }
 
+
         .footer-col ul li a:hover {
             color: #FFF;
             padding-left: 7px;
         }
+
 
         .footer-col .social-links a {
             color: #FFF;
@@ -211,9 +232,11 @@
             transition: all 0.5s ease;
         }
 
+
         .footer-col .social-links a:hover {
             color: #151515;
             background-color: #FFF;
         }
+
 
     </style>

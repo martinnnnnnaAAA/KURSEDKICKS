@@ -97,6 +97,7 @@ public class HomeController : Controller
     }
     public IActionResult Modelo(MODELO item)
     {
+        ViewBag.IsFavorito = BD.IsFavorito(item.IdModelo);
         ViewBag.User = BD.user;
         ViewBag.Zapatilla = item;
         ViewBag.Colores = BD.ObtenerColores();
@@ -127,9 +128,40 @@ public class HomeController : Controller
         ViewBag.Carrito = BD.ObtenerCarrito();
         return View("Carrito");
     }
-    // public IActionResult EliminarDelCarrito(){
-
-    // } PENDIENTE PARA AJAX
+        public IActionResult Favorito(){
+        ViewBag.User = BD.user;
+        if(ViewBag.User != null){
+        ViewBag.Favorito = BD.ObtenerFavorito();
+        ViewBag.ListaFavorito = BD.ObtenerDetalleFavorito();
+        }
+        return View("Favorito");
+    }
+        public IActionResult AgregarAlFavorito(int IdModelo){
+        BD.InsertarFavorito(IdModelo);
+        MODELO item = BD.ObtenerModeloXId(IdModelo);
+        ViewBag.IsFavorito = BD.IsFavorito(IdModelo);
+        ViewBag.User = BD.user;
+        ViewBag.Favorito = BD.ObtenerFavorito();
+        ViewBag.ListaFavorito = BD.ObtenerDetalleFavorito();
+        ViewBag.Zapatilla = item;
+        ViewBag.Colores = BD.ObtenerColores();
+        ViewBag.Talles = BD.ObtenerTalles();
+        ViewBag.Mes = DateTime.Now.Month;
+        return View("Modelo");
+    }
+    public IActionResult EliminarFavorito(int IdModelo){
+        BD.EliminarFavorito(IdModelo);
+        MODELO item = BD.ObtenerModeloXId(IdModelo);
+        ViewBag.IsFavorito = BD.IsFavorito(IdModelo);
+        ViewBag.User = BD.user;
+        ViewBag.Favorito = BD.ObtenerFavorito();
+        ViewBag.ListaDetalleFavorito = BD.ObtenerDetalleFavorito();
+        ViewBag.Zapatilla = item;
+        ViewBag.Colores = BD.ObtenerColores();
+        ViewBag.Talles = BD.ObtenerTalles();
+        ViewBag.Mes = DateTime.Now.Month;
+        return View("Modelo");
+    }
      
     public List<TALLE> infoTalles()
     {
@@ -170,6 +202,7 @@ public IActionResult AgregarZapatilla(){
     if(BD.user.Administrador == false || BD.user == null){
         return View("HomeTienda");
     }
+    // ViewBag.Talles = BD.ObtenerTalles();
         ViewBag.Generos = BD.ObtenerGeneros();
         ViewBag.Marcas = BD.ObtenerMarcas();
 

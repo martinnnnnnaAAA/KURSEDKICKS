@@ -16,8 +16,13 @@
                             <table class='order-table'>
                                 <tbody>
                                     <tr>
-                                        <td><img src="/Images/@item.Foto"
-                                                class='full-width'></img>
+                                        <td>
+                                            @if(item.Foto.Length < 30){
+                                            <img src="/Images/@item.Foto" class="full-width" alt="...">
+                                            }
+                                                else{
+                                                    <img src="@item.Foto" class="full-width" alt="...">
+                                                }
                                         </td>
                                         <td>
                                             <br> <span class='thin'>@item.NombreMarca</span>

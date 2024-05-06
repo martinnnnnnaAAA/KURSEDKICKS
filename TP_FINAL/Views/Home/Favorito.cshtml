@@ -1,22 +1,10 @@
-@{
-  
-}
-
 <section style="width:50%;margin-left:25%;margin-right:0; background-color:rgb(255, 255, 255);">
-  <h1 style="padding-top:8%; padding-left:2%; margin-top:30px">Featured Products</h1>
+  <h1 style="padding-top:8%; padding-left:2%; margin-top:30px">Favourite Products</h1>
 
- <div class="dropdown" style="margin-left: 3%;">
-    <button >Sort By</button> 
-    <div class="dropdown-content">
-        <a href='@Url.Action("HomeTienda","Home", new{opcionSort = 1})'>Default</a>
-        <a href='@Url.Action("HomeTienda","Home",new{opcionSort = 2})'>Price: Low to High</a>
-        <a href='@Url.Action("HomeTienda","Home",new{opcionSort = 3})'>Price: Hight to Low</a>
-    </div>
-</div>
 
   <div class="container-fluid">
     <div class="row">
-      @foreach (MODELO item in ViewBag.Modelo)
+      @foreach (MODELO item in ViewBag.ListaFavorito)
       {
         <div class="col-md-3 col-12">
           <div class ="container-card">
@@ -39,47 +27,6 @@
           </div>
         </div>
       }
-
-      <section class="container-pagination">
-        <div class="pagination">
-          @if (ViewBag.PaginaActual > 1)
-          {
-            <a href='@Url.Action("HomeTienda", "Home", new {opcionSort = ViewBag.opcionSort, pagMandada = ViewBag.PaginaActual-1})' class="btn">
-              <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </a>
-          }
-
-          @for (int i = 1; i <= ViewBag.totalPaginas; i++)
-          {
-            if (i == ViewBag.PaginaActual)
-            {
-              <a href='@Url.Action("HomeTienda", "Home", new {opcionSort = ViewBag.opcionSort, pagMandada = i })'
-                class="page-link page-link--current">@i</a>
-
-            }
-            else
-            {
-              <a href='@Url.Action("HomeTienda", "Home", new {opcionSort = ViewBag.opcionSort, pagMandada = i })' class="page-link">@i</a>
-
-            }
-          }
-          @if (ViewBag.PaginaActual < ViewBag.totalPaginas)
-          {
-            <a href='@Url.Action("HomeTienda", "Home", new {opcionSort = ViewBag.opcionSort, pagMandada =ViewBag.PaginaActual + 1})' class="btn">
-              <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          }
-
-        </div>
-      </section>
-
-
     </div>
 
   </div>
